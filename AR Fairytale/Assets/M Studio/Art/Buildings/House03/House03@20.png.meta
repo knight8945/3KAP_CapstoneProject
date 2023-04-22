@@ -3,7 +3,7 @@ guid: d5c3b16b1bba746d693bf0211c217664
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -106,6 +107,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -4305,12 +4318,12 @@ TextureImporter:
       House03@20_174: -4154950
       House03@20_91: -2146750350
       House03@20_37: -689529399
-      House03@20_63: 951964022
+      House03@20_184: 1555625503
       House03@20_137: 2060531691
       House03@20_191: -1007848391
-      House03@20_184: 1555625503
       House03@20_115: 1976804152
       House03@20_43: 454299821
+      House03@20_63: 951964022
       House03@20_126: 255790607
       House03@20_167: 929810392
       House03@20_119: 659923360
