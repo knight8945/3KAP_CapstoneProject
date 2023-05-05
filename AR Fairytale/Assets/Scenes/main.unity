@@ -2323,7 +2323,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.375, y: 1.2, z: 0}
   m_MaxChunkCount: 16
@@ -2921,7 +2921,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1.375, y: 4.25, z: 0}
   m_MaxChunkCount: 16
@@ -16933,7 +16933,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 14502509, guid: 85f3f75b0912741b0bc48e7f38554cd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -16953,10 +16953,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957450105}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!114 &957450113
@@ -19589,9 +19589,10 @@ GameObject:
   - component: {fileID: 1540784350}
   - component: {fileID: 1540784352}
   - component: {fileID: 1540784351}
+  - component: {fileID: 1540784353}
   m_Layer: 0
   m_Name: object1.2
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19651,7 +19652,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.59901106, y: 1.4715241, z: 0}
   m_MaxChunkCount: 16
@@ -20758,6 +20759,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!65 &1540784353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540784349}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 34.19802, y: 14.9430485, z: 0}
+  m_Center: {x: 5.5, y: 1, z: 0}
 --- !u!1 &1545931598
 GameObject:
   m_ObjectHideFlags: 0
@@ -21053,7 +21067,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.6, y: 2.4957445, z: 0}
   m_MaxChunkCount: 16
@@ -21761,9 +21775,10 @@ GameObject:
   - component: {fileID: 1654097626}
   - component: {fileID: 1654097628}
   - component: {fileID: 1654097627}
+  - component: {fileID: 1654097629}
   m_Layer: 0
   m_Name: object1.1
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23259,6 +23274,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!65 &1654097629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654097625}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 29, y: 15, z: 0}
+  m_Center: {x: 8.5, y: 1.5, z: 0}
 --- !u!1 &1705709762
 GameObject:
   m_ObjectHideFlags: 0
@@ -24071,7 +24099,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d5c3b16b1bba746d693bf0211c217664, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
