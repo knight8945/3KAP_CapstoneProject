@@ -18,16 +18,16 @@ extern void CameraMove_Awake_m9F54425E7C027E351509A9DBB26433CE88B4129B (void);
 extern void CameraMove_LateUpdate_m0A736BBC95E5C1F90390E2B0BE60BCC6E497D5F7 (void);
 // 0x00000003 System.Void CameraMove::.ctor()
 extern void CameraMove__ctor_m3BBC2F541B40FB1634F0EA0B844BA27E5DDD9908 (void);
-// 0x00000004 System.Void GameStart::StartGameScene()
-extern void GameStart_StartGameScene_mD4023AE51EEC9F2AE2B0C92CA9B4249D7B3B4D10 (void);
-// 0x00000005 System.Void GameStart::.ctor()
-extern void GameStart__ctor_mE5A8840AC2AF21622B0116885741F2AAF1F41394 (void);
-// 0x00000006 System.Void PlayerController::Start()
+// 0x00000004 System.Void PlayerController::Start()
 extern void PlayerController_Start_m1D83076E8B136A71051F2F02545EE04947D3A8CF (void);
-// 0x00000007 System.Void PlayerController::Update()
+// 0x00000005 System.Void PlayerController::Update()
 extern void PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33 (void);
-// 0x00000008 System.Void PlayerController::.ctor()
+// 0x00000006 System.Void PlayerController::.ctor()
 extern void PlayerController__ctor_mDDAB7C7D82E1A5B3E6C197B1AB9D653DFE554F33 (void);
+// 0x00000007 System.Void TouchHandler::LoadScene()
+extern void TouchHandler_LoadScene_m390F282B55185CB3865ED53D467FC0B15B744F84 (void);
+// 0x00000008 System.Void TouchHandler::.ctor()
+extern void TouchHandler__ctor_mDF2FCF69149565CEA7539FA3AE2C1C61E9BC35BC (void);
 // 0x00000009 System.Void ChatController::OnEnable()
 extern void ChatController_OnEnable_m025CE203564D82A1CDCE5E5719DB07E29811D0B7 (void);
 // 0x0000000A System.Void ChatController::OnDisable()
@@ -603,11 +603,11 @@ static Il2CppMethodPointer s_methodPointers[293] =
 	CameraMove_Awake_m9F54425E7C027E351509A9DBB26433CE88B4129B,
 	CameraMove_LateUpdate_m0A736BBC95E5C1F90390E2B0BE60BCC6E497D5F7,
 	CameraMove__ctor_m3BBC2F541B40FB1634F0EA0B844BA27E5DDD9908,
-	GameStart_StartGameScene_mD4023AE51EEC9F2AE2B0C92CA9B4249D7B3B4D10,
-	GameStart__ctor_mE5A8840AC2AF21622B0116885741F2AAF1F41394,
 	PlayerController_Start_m1D83076E8B136A71051F2F02545EE04947D3A8CF,
 	PlayerController_Update_m1F4051EB5BCBCCE5EEE2E3E49B7E278C3B14EC33,
 	PlayerController__ctor_mDDAB7C7D82E1A5B3E6C197B1AB9D653DFE554F33,
+	TouchHandler_LoadScene_m390F282B55185CB3865ED53D467FC0B15B744F84,
+	TouchHandler__ctor_mDF2FCF69149565CEA7539FA3AE2C1C61E9BC35BC,
 	ChatController_OnEnable_m025CE203564D82A1CDCE5E5719DB07E29811D0B7,
 	ChatController_OnDisable_mD49D03719CAEBB3F59F24A7FA8F4FD30C8B54E46,
 	ChatController_AddToChatOutput_m9AB8FA8A32EA23F2E55795D8301ED0BF6A59F722,
