@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GirlToVill
   - Object
+  - ChangeScene
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     Animator animator;
     string animationState = "AnimationState";
+    public bool indicater = false;
 
     [SerializeField]
     Transform playerTransform;
@@ -129,7 +130,13 @@ public class PlayerController : MonoBehaviour
             incameraCharacter();
         }
     }
-   
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "ChangeScene")
+            indicater = true;
+    }
+
     //캐릭터가 카메라 화면에서 못 벗어나는 코드
     void incameraCharacter()
     {
