@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     Animator animator;
     string animationState = "AnimationState";
+    public GameManager manager;
 
     [SerializeField]
     Transform playerTransform;
@@ -56,6 +57,12 @@ public class PlayerController : MonoBehaviour
         else //정지 상태
         {
             animator.SetInteger(animationState, (int)States.stop);
+        }
+
+        // 오브젝트 스캔
+        if(Input.GetKeyDown(KeyCode.Space) && manager.scanObject != null)
+        {
+            manager.Action(manager.scanObject);
         }
 
         // Collider & RigidBody 컴포넌트 사용불가로 인한 대체 Transform 코드
