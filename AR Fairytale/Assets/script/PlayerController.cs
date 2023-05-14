@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 15f;
     Animator animator;
     string animationState = "AnimationState";
     public GameManager manager;
-
+    Vector3 lookDirection;
     [SerializeField]
     Transform playerTransform;
     [SerializeField]
     Transform cameraTransform;
-
+    GameObject scanObject;
     enum States
     {
         right = 1,
         left = 2,
         behind = 3,
         front = 4,
-        stop = 5
+        idle_right = 5,
+        idle_left = 6,
+        idle_behind =7,
+        idle_front = 8
     }
 
     private void Start()
@@ -34,38 +37,51 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // 캐릭터 이동 제어 스크립트(화면으로 보았을때)
-        if (Input.GetKey(KeyCode.LeftArrow)) //좌측 이동
+        if (manager.isAction ? false : Input.GetKey(KeyCode.LeftArrow)) //좌측 이동
         {
             transform.Translate(-speed * Time.deltaTime, 0, 0);
             animator.SetInteger(animationState, (int)States.left);
+            lookDirection = Vector3.left;
         }
-        else if (Input.GetKey(KeyCode.RightArrow)) //우측 이동
+        else if (manager.isAction ? false : Input.GetKey(KeyCode.RightArrow)) //우측 이동
         {
             transform.Translate(speed * Time.deltaTime, 0, 0);
             animator.SetInteger(animationState, (int)States.right);
+            lookDirection = Vector3.right;
         }
-        else if (Input.GetKey(KeyCode.UpArrow)) //위측 이동
+        else if (manager.isAction ? false : Input.GetKey(KeyCode.UpArrow)) //위측 이동
         {
             transform.Translate(0, speed * Time.deltaTime,0);
             animator.SetInteger(animationState, (int)States.front);
+            lookDirection = Vector3.back;
         }
-        else if (Input.GetKey(KeyCode.DownArrow)) //아래측 이동
+        else if (manager.isAction ? false : Input.GetKey(KeyCode.DownArrow)) //아래측 이동
         {
             transform.Translate(0, -speed * Time.deltaTime,0);
             animator.SetInteger(animationState, (int)States.behind);
+            lookDirection = Vector3.forward;
         }
+        // 캐릭터 idle 상태
         else //정지 상태
         {
-            animator.SetInteger(animationState, (int)States.stop);
+            if (lookDirection ==  Vector3.right)
+            {
+                animator.SetInteger(animationState, (int)States.idle_right);
+            }
+            else if(lookDirection == Vector3.left)
+            {
+                animator.SetInteger(animationState, (int)States.idle_left);
+            }
+            else if (lookDirection == Vector3.back)
+            {
+                animator.SetInteger(animationState, (int)States.idle_behind);
+            }
+            else if (lookDirection == Vector3.forward)
+            {
+                animator.SetInteger(animationState, (int)States.idle_front);
+            }
         }
 
-        // 오브젝트 스캔
-        if(Input.GetKeyDown(KeyCode.Space) && manager.scanObject != null)
-        {
-            manager.Action(manager.scanObject);
-        }
-
-        // Collider & RigidBody 컴포넌트 사용불가로 인한 대체 Transform 코드
         // main -> 빨간모자 집 이동
         if (playerTransform.position.x > -9.5 && playerTransform.position.x < -8.5 && playerTransform.position.y > 2 && playerTransform.position.y < 3)
         {
@@ -135,8 +151,23 @@ public class PlayerController : MonoBehaviour
         {
             incameraCharacter();
         }
+        //Scan Object
+        if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
+            manager.Action(scanObject);
     }
-   
+
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position, lookDirection * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, lookDirection, 0.7f, LayerMask.GetMask("Object"));
+
+        if (rayHit.collider != null)
+        {
+            scanObject = rayHit.collider.gameObject;
+        }
+        else
+            scanObject = null;
+    }
     //캐릭터가 카메라 화면에서 못 벗어나는 코드
     void incameraCharacter()
     {
