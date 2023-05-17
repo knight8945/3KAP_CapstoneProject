@@ -156,8 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 105407635}
   mHiddenRoot: {fileID: 0}
-  mTargetName: 
-  mDatasetName: 
+  mTargetName: 5_endingSmall
+  mDatasetName: Vuforia/hongbeom.xml
   mCastedBehaviour: {fileID: 105407635}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -220,13 +220,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: 
+  mTrackableName: 5_endingSmall
   mInitializedInEditor: 1
-  mDataSetPath: 
-  mAspectRatio: 1
-  mImageTargetType: 3
-  mWidth: 0.2
-  mHeight: 0.2
+  mDataSetPath: Vuforia/hongbeom.xml
+  mAspectRatio: 0.45
+  mImageTargetType: 0
+  mWidth: 1
+  mHeight: 0.45
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
