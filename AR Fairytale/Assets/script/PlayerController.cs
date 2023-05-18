@@ -137,6 +137,11 @@ public class PlayerController : MonoBehaviour
             indicater = true;
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        indicater = false;
+    }
+
     //캐릭터가 카메라 화면에서 못 벗어나는 코드
     void incameraCharacter()
     {
