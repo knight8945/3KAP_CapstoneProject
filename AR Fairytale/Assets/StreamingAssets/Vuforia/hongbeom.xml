@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="food_select_small" size="1.000000 0.800000" />
     <ImageTarget name="5_endingSmall" size="1.000000 0.450000" />
     <ImageTarget name="3_wood_clean" size="1.000000 0.500000" />
     <ImageTarget name="catchwolf" size="1.000000 0.646875" />
