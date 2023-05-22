@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         front = 4,
         idle_right = 5,
         idle_left = 6,
-        idle_behind =7,
+        idle_behind = 7,
         idle_front = 8
     }
 
@@ -74,11 +74,11 @@ public class PlayerController : MonoBehaviour
             }
             else if (lookDirection == Vector3.back)
             {
-                animator.SetInteger(animationState, (int)States.idle_behind);
+                animator.SetInteger(animationState, (int)States.idle_front);
             }
             else if (lookDirection == Vector3.forward)
             {
-                animator.SetInteger(animationState, (int)States.idle_front);
+                animator.SetInteger(animationState, (int)States.idle_behind);
             }
         }
 
