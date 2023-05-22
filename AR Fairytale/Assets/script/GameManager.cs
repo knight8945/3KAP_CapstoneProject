@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TalkManager talkManager;
+    public QuestManager questManager;
     public GameObject talkPanel; // 액션때만 대화창 띄우기
     public Image portraitImg;
     public TextMeshProUGUI talkText;
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     public bool isAction;
     public int talkIndex;
 
+    private void Start()
+    {
+        Debug.Log(questManager.CheckQuest());
+    }
     public void Action(GameObject scanObj)
     {
 
@@ -26,12 +31,16 @@ public class GameManager : MonoBehaviour
     }
     void Talk(int id, bool isNPC)
     {
-        string talkData = talkManager.GetTalk(id, talkIndex);
+        //Set Talk Data
+        int questTalkIndex = questManager.GetQuestTalkIndex(id);
+        string talkData = talkManager.GetTalk(id+ questTalkIndex, talkIndex);
 
+        //End Talk
         if(talkData == null)
         {
             isAction = false;
             talkIndex = 0;
+            questManager.CheckQuest(id);
             return;
         }
 
