@@ -46,16 +46,13 @@ public class TalkManager : MonoBehaviour
         talkData.Add(1110, new string[] { "늦지 않게 서두르렴", "파란색 꽃을 가져가는 것도 잊지 말고!" });
         // 문앞 미니 퀴즈
         talkData.Add(1115, new string[] { "엄마가 찾아가라고 한 꽃이 무슨 색이었지?" });
-            // 맞춤
-        talkData.Add(1120, new string[] { "맞아! 파란색 꽃이였어. 잘 기억해야겠다." });
-            // 틀림
-        talkData.Add(1125, new string[] { "으음.. 기억이 잘 안나. 엄마한테 다시 물어봐야겠다." });
+
         
         //마을 사냥꾼과의 대화
         talkData.Add(2000, new string[] { "반갑구나. 빨간 망토야.:1","아침부터 부지런하구나:1" });
         talkData.Add(2010, new string[] { "빨간 망토야 숲의 할머니를 만나러 가니?:1", "요즘 숲에 늑대가 나타났다는 소문이 돈단다.:1",
             "이런 작은 숲에 늑대가 나올 것 같지 않지만, 혹시 모르니 조심하렴?:1"});
-        talkData.Add(10120, new string[] { "네. 사냥꾼 할아버지! 조심할게요." });
+        talkData.Add(2015, new string[] { "네. 사냥꾼 할아버지! 조심할게요." });
         talkData.Add(2020, new string[] { "조심하렴.:1"});
 
         //통나무 Scene 스크립트 1 빨간망토 2 나레이션 3 늑대
@@ -193,11 +190,6 @@ public class TalkManager : MonoBehaviour
                 return GetTalk(id - id % 100, talkIndex);
             else
                 return GetTalk(id - id % 10, talkIndex);
-        }
-        if (id == 10000)
-        {
-            count++;
-            return talkData[id][count];
         }
         if (talkIndex == talkData[id].Length)
         {

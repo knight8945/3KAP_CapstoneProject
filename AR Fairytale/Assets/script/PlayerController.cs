@@ -94,13 +94,20 @@ public class PlayerController : MonoBehaviour
         {
             playerTransform.position = new Vector3(-9f, 0.5f, 0);
             cameraTransform.position = new Vector3(-4f, 2, -1);
+            if(manager.self == 1)
+            {
+                manager.isAction = true;
+                manager.questPanel.SetActive(true);
+            }
 
         }
+        // 퀘스트 받았을 때 퀘스트 밀맵으로 이동
         else if (playerTransform.position.x > 14 && playerTransform.position.x < 16 && playerTransform.position.y > 1.5 && playerTransform.position.y < 2.5 && manager.questCheck == true )
         {
             playerTransform.position = new Vector3(37, 19f, 0);
             cameraTransform.position = new Vector3(37, 21, -1);
         }
+        // 퀘스트 완료시 main 맵으로 이동
         else if (playerTransform.position.x > 30 && playerTransform.position.x < 43 && playerTransform.position.y > 18 && playerTransform.position.y < 25 && manager.countMeal == 1)
         { 
             playerTransform.position = new Vector3(15, 0f, 0);

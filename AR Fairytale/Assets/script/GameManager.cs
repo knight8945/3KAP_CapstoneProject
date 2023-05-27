@@ -7,9 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public TalkManager talkManager;
     public QuestManager questManager;
+    public QuizManager quizManager;
     public GameObject talkPanel; // 액션때만 대화창 띄우기
+    public GameObject questPanel;
+    public GameObject Button;
     public Image portraitImg;
     public TextMeshProUGUI talkText;
+    public TextMeshProUGUI quizText;
     public GameObject scanObject;
     public bool isAction;
     public int talkIndex = 0;
@@ -17,13 +21,17 @@ public class GameManager : MonoBehaviour
     public bool questCheck = false;
     public int countMeal = 0;
     public int countGrape = 0;
+    public int self = 0;
     private void Start()
     {
         //Debug.Log(questManager.CheckQuest());
     }
     public void Action(GameObject scanObj)
     {
-
+        if(quizManager.BingGo == 1)
+        {
+            questPanel.SetActive(false);
+        }
         isAction = true;
         scanObject = scanObj;
         ObjData objData = scanObject.GetComponent<ObjData>();
@@ -32,13 +40,15 @@ public class GameManager : MonoBehaviour
             next = true;
             countMeal = 0;
             countGrape = 0;
+            self = 1;
         }
+
         if (next)
         {
             next = false;
-            if (objData.id == 1090)
+            if (objData.id == 1110)
             {
-                objData.id += 5;
+                objData.id = 1110;
             }
             else if(objData.id % 10 == 5)
             {
@@ -54,7 +64,7 @@ public class GameManager : MonoBehaviour
         talkPanel.SetActive(isAction);
     }
 
-    void Talk(int id, bool isNPC)
+    public void Talk(int id, bool isNPC)
     {
         //Set Talk Data
         int questTalkIndex = questManager.GetQuestTalkIndex(id);
@@ -118,6 +128,7 @@ public class GameManager : MonoBehaviour
             case 1080:
             case 1090:
             case 1100:
+            case 1110:
                 next = true;
                 break;
             case 1060:
@@ -132,6 +143,17 @@ public class GameManager : MonoBehaviour
                 {
                     break;
                 }
+            case 2000:
+                if(self == 1)
+                    next = true;
+                else
+                    next = false;
+                break;
+            case 2010:
+            case 2015:
+            case 2020:
+                next = true;
+                break;
         }
     }
 
