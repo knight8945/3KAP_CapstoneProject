@@ -92,9 +92,19 @@ public class PlayerController : MonoBehaviour
         // 빨간모자 집 -> main 이동
         else if (playerTransform.position.x > -6 && playerTransform.position.x < -5.5 && playerTransform.position.y > 15 && playerTransform.position.y < 15.5)
         {
-            playerTransform.position = new Vector3(-9f,0.5f, 0);
+            playerTransform.position = new Vector3(-9f, 0.5f, 0);
             cameraTransform.position = new Vector3(-4f, 2, -1);
 
+        }
+        else if (playerTransform.position.x > 14 && playerTransform.position.x < 16 && playerTransform.position.y > 1.5 && playerTransform.position.y < 2.5 && manager.questCheck == true )
+        {
+            playerTransform.position = new Vector3(37, 19f, 0);
+            cameraTransform.position = new Vector3(37, 21, -1);
+        }
+        else if (playerTransform.position.x > 30 && playerTransform.position.x < 43 && playerTransform.position.y > 18 && playerTransform.position.y < 25 && manager.countMeal == 1)
+        { 
+            playerTransform.position = new Vector3(15, 0f, 0);
+            cameraTransform.position = new Vector3(6, 6, -1);
         }
         //플레이어 main -> forest 이동
         else if (playerTransform.position.x > 2.5 && playerTransform.position.x < 3.5 && playerTransform.position.y == -9)
@@ -158,8 +168,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, lookDirection * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, lookDirection, 0.7f, LayerMask.GetMask("Object"));
+        Debug.DrawRay(transform.position, lookDirection * 1.2f, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, lookDirection, 1.2f, LayerMask.GetMask("Object"));
 
         if (rayHit.collider != null)
         {

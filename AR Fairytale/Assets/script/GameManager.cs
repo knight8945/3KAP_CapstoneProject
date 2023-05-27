@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     public bool isAction;
     public int talkIndex = 0;
     public bool next = false;
-
+    public bool questCheck = false;
+    public int countMeal = 0;
+    public int countGrape = 0;
     private void Start()
     {
-       //Debug.Log(questManager.CheckQuest());
+        //Debug.Log(questManager.CheckQuest());
     }
     public void Action(GameObject scanObj)
     {
@@ -25,26 +27,56 @@ public class GameManager : MonoBehaviour
         isAction = true;
         scanObject = scanObj;
         ObjData objData = scanObject.GetComponent<ObjData>();
+        if (countGrape == 1 && countMeal == 1)
+        {
+            next = true;
+            countMeal = 0;
+            countGrape = 0;
+        }
+        if (next)
+        {
+            next = false;
+            if (objData.id == 1090)
+            {
+                objData.id += 5;
+            }
+            else if(objData.id % 10 == 5)
+            {
+                objData.id += 5;
+            }
+            else
+            {
+                objData.id += 10;
+            }
+            
+        }
         Talk(objData.id, objData.isNPC);
         talkPanel.SetActive(isAction);
     }
+
     void Talk(int id, bool isNPC)
     {
         //Set Talk Data
         int questTalkIndex = questManager.GetQuestTalkIndex(id);
         string talkData = talkManager.GetTalk(id, talkIndex);
 
-       
+
         //End Talk
-        if(talkData == null)
+        if (talkData == null)
         { 
             isAction = false;
             talkIndex = 0;
+            nextScript(id);
             questManager.CheckQuest();
             return;
         }
 
-        if (isNPC)
+        if (id % 10 == 5)
+        {
+            talkText.text = talkData;
+            portraitImg.color = new Color(1, 1, 1, 0);
+        }
+        else if (isNPC)
         {
 
             talkText.text = talkData.Split(':')[0];
@@ -61,6 +93,48 @@ public class GameManager : MonoBehaviour
         isAction = true;
         talkIndex++;
     }
+
+    void nextScript(int id)
+    {
+        switch (id)
+        {
+            case 400:
+                countMeal = 1;
+                next = false;
+                break;
+            case 500:
+                countGrape = 1;
+                next = false;
+                break;
+            case 250:
+            case 1000:
+            case 1010:
+            case 1020:
+            case 1025:
+            case 1030:
+            case 1040:
+            case 1050:
+            case 1070:
+            case 1080:
+            case 1090:
+            case 1100:
+                next = true;
+                break;
+            case 1060:
+                Debug.Log(questManager.CheckQuest());
+                questCheck = true;
+                if (countMeal == 1 && countGrape == 1)
+                {
+                    next = true;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+        }
+    }
+
 
 
 }

@@ -9,6 +9,7 @@ public class TalkManager : MonoBehaviour
     public Sprite[] portraitArr;
     public GameManager gamemanager;
     public bool next = false;
+    public int count = -1;
     // NPC에 맞게 번호 , 대화창 구현
     void Awake ()
     {
@@ -27,41 +28,35 @@ public class TalkManager : MonoBehaviour
         //엄마와의 대화(화면 어둡게) 
         talkData.Add(1000, new string[] { ".. 어서 일어나렴.", "빨간 망토야.." });
             //화면 밝아짐
-        talkData.Add(1010, new string[] {"빨간 망토야 어서 일어나렴.", "오늘 할머니 병문안 가기로 했잖니.."});
-        talkData.Add(10000, new string[] { "으음.:0", "네 엄마 저 이제 일어났어요." });
-        talkData.Add(1020, new string[] { "그럼 어서 씻고 준비하렴.", "해가 지기 전에 돌아오려면 서둘러야 한단다."});
-        talkData.Add(10010, new string[] { "네." });
+        talkData.Add(1010, new string[] {"빨간 망토야 어서 일어나렴.", "오늘 할머니 병문안 가기로 했잖니.", "으음.", "네 엄마 저 이제 일어났어요." });
+        talkData.Add(1020, new string[] { "그럼 어서 씻고 준비하렴.", "해가 지기 전에 돌아오려면 서둘러야 한단다.", "네." });
             // 화면 잠시 어두워졌다 밝아짐
-        talkData.Add(10020, new string[] { "엄마! 저 준비 다 됐어요!!" });
-        talkData.Add(1030, new string[] { "좋아 옷도 반듯하고 문제없겠구나.", "할머니 병문안 가기전에", "할머니가 좋아하시는 빵이랑 포도주를 가져가면 좋겠구나.","빨간 망토야 밖에 나가서 밀이랑 포도주를 가져오렴." });
-        talkData.Add(10040, new string[] {"밀은 집 밖에 있는 밭에 3번째 줄에 아래에서 2번째 밀이 가장 잘 익었더구나.","포도주는 포도밭 옆에 있는 상자에서 가져오면 된단다." });
-        talkData.Add(10030, new string[] { "네. 다녀올게요 엄마!!" });
-        talkData.Add(1050, new string[] { "포도주는 상자에서 가져오고 밀은 3번째 줄에서 아래에서 2번째 밀이 가장 잘 익었더구나." });
-            // 밀과 포도주를 가져왔을 때
-        talkData.Add(10050, new string[] { "엄마! 여기 밀이랑 포도주 가져왔어요!" });
-        talkData.Add(1060, new string[] { "정말 잘 했구나.", "이제 엄마가 빵을 구워줄테니 잠시만 기다리렴." });
+        talkData.Add(1030, new string[] { "엄마! 저 준비 다 됐어요!!" });
+        talkData.Add(1040, new string[] { "좋아 옷도 반듯하고 문제없겠구나.", "할머니 병문안 가기전에", "할머니가 좋아하시는 빵이랑 포도주를 가져가면 좋겠구나.","빨간 망토야 밖에 나가서 밀이랑 포도주를 가져오렴." });
+        talkData.Add(1050, new string[] {"밀은 집 밖에 있는 밭에 4번째 줄에 아래에서 2번째 밀이 가장 잘 익었더구나.","포도주는 포도밭 옆에 있는 상자에서 가져오면 된단다.", "네. 다녀올게요 엄마!!" });
+        talkData.Add(1060, new string[] { "포도주는 상자에서 가져오고 밀은 왼쪽에서 4번째 줄에서 아래에서 2번째 밀이 가장 잘 익었더구나." });
+        // 밀과 포도주를 가져왔을 때
+        talkData.Add(1070, new string[] { "밀이랑 포도주랑 둘 다 잘 가져왔구나.", "이제 엄마가 빵을 구워줄테니 잠시만 기다리렴.", "네. 엄마" });
+       
             // 잠시 암전
-        talkData.Add(1070, new string[] { "빨간 망토야 빵이 다 되었단다.", "식탁위에 있는 빵이랑 포도주를 가져와 줄 수 있겠니?","엄마는 바구니를 찾아오마."});
-        talkData.Add(10060, new string[] { "네!" });
+        talkData.Add(1080, new string[] { "빨간 망토야 빵이 다 되었단다.", "식탁위에 있는 빵이랑 포도주를 가져와 줄 수 있겠니?", "엄마는 바구니를 찾아오마.", "네!" });
         //AR 이벤트 #1 후
-        talkData.Add(1080, new string[] { "고맙구나.", "이제 이 바구니에 담아서 가져가기만 하면 된단다.", "그리고 가는길에 꽃밭에서 파란 꽃을 가져가렴.","할머니가 요즘 잠을 못 주무신다는데 그 꽃의 향기를 맡으면 수면에 도움이 될 거야." });
-        talkData.Add(10070, new string[] { "알았어요. 엄마","파란색 꽃 말이죠?" });
-        talkData.Add(1090, new string[] { "한눈팔지 말고 늦기 전에 다녀와야 된단다.", "또 모르는 사람과 이야기하면 안 돼!" });
-        talkData.Add(10080, new string[] { "네 엄마. 다녀올게요!" });
-        talkData.Add(1100, new string[] { "늦지 않게 서두르렴", "파란색 꽃을 가져가는 것도 잊지 말고!" });
+        talkData.Add(1090, new string[] { "고맙구나.", "이제 이 바구니에 담아서 가져가기만 하면 된단다.", "그리고 가는길에 꽃밭에서 파란 꽃을 가져가렴.","할머니가 요즘 잠을 못 주무신다는데 그 꽃의 향기를 맡으면 수면에 도움이 될 거야.", "알았어요. 엄마", "파란색 꽃 말이죠?" });
+        talkData.Add(1100, new string[] { "한눈팔지 말고 늦기 전에 다녀와야 된단다.", "또 모르는 사람과 이야기하면 안 돼!", "네 엄마. 다녀올게요!" });
+        talkData.Add(1110, new string[] { "늦지 않게 서두르렴", "파란색 꽃을 가져가는 것도 잊지 말고!" });
         // 문앞 미니 퀴즈
-        talkData.Add(10090, new string[] { "엄마가 찾아가라고 한 꽃이 무슨 색이었지?" });
+        talkData.Add(1115, new string[] { "엄마가 찾아가라고 한 꽃이 무슨 색이었지?" });
             // 맞춤
-        talkData.Add(10100, new string[] { "맞아! 파란색 꽃이였어. 잘 기억해야겠다." });
+        talkData.Add(1120, new string[] { "맞아! 파란색 꽃이였어. 잘 기억해야겠다." });
             // 틀림
-        talkData.Add(10110, new string[] { "으음.. 기억이 잘 안나. 엄마한테 다시 물어봐야겠다." });
+        talkData.Add(1125, new string[] { "으음.. 기억이 잘 안나. 엄마한테 다시 물어봐야겠다." });
         
         //마을 사냥꾼과의 대화
-        talkData.Add(2000, new string[] { "반갑구나. 빨간 망토야.:1","아침부터 부지런하구나:0" });
-        talkData.Add(2010, new string[] { "빨간 망토야 숲의 할머니를 만나러 가니?:0", "요즘 숲에 늑대가 나타났다는 소문이 돈단다.:0",
-            "이런 작은 숲에 늑대가 나올 것 같지 않지만, 혹시 모르니 조심하렴?:0"});
+        talkData.Add(2000, new string[] { "반갑구나. 빨간 망토야.:1","아침부터 부지런하구나:1" });
+        talkData.Add(2010, new string[] { "빨간 망토야 숲의 할머니를 만나러 가니?:1", "요즘 숲에 늑대가 나타났다는 소문이 돈단다.:1",
+            "이런 작은 숲에 늑대가 나올 것 같지 않지만, 혹시 모르니 조심하렴?:1"});
         talkData.Add(10120, new string[] { "네. 사냥꾼 할아버지! 조심할게요." });
-        talkData.Add(2020, new string[] { "조심하렴.:0"});
+        talkData.Add(2020, new string[] { "조심하렴.:1"});
 
         //통나무 Scene 스크립트 1 빨간망토 2 나레이션 3 늑대
         talkData.Add(20000, new string[] { "빨간 망토가 숲길을 한참 가고 있을 때, 큰 문제가 나타났어요.","커다란 통나무가 길을 가로막고 있었던 것이에요.", "빨간 망토는 통나무를 밀어도 보고 당겨도 봤지만 통나무는 꿈쩍도 하지 않았어요."});
@@ -176,9 +171,11 @@ public class TalkManager : MonoBehaviour
         //오브젝트 대화
         talkData.Add(100, new string[] { "엄마랑 사는 우리집이다." });
         talkData.Add(200, new string[] { "사냥꾼 할아버지의 집이다." });
+        talkData.Add(250, new string[] {"밀밭으로 갈 수 있을 것 같아." });
         talkData.Add(300, new string[] { "이 밀은 아직 덜 익은 것 같아..." });
         talkData.Add(400, new string[] { "어! 정말 잘 익었네!! 이 밀이 맞는 것 같아!!" });
         talkData.Add(500, new string[] { "박스 안에서 잘 숙성된 포도주를 찾았다." });
+        talkData.Add(600, new string[] { "왼쪽에서 4번째줄에 아래쪽에서 2번째 였던것 같아.." });
         //portraitData.Add(1000 + 0, portraitArr[0]); //일반표정
         //portraitData.Add(1000 + 1, portraitArr[1]); //기쁜표정
         //portraitData.Add(1000 + 2, portraitArr[2]); //걱정표정
@@ -197,6 +194,11 @@ public class TalkManager : MonoBehaviour
             else
                 return GetTalk(id - id % 10, talkIndex);
         }
+        if (id == 10000)
+        {
+            count++;
+            return talkData[id][count];
+        }
         if (talkIndex == talkData[id].Length)
         {
             return null;
@@ -204,6 +206,7 @@ public class TalkManager : MonoBehaviour
         else
             return talkData[id][talkIndex];
        
+        
     }
     public Sprite GetPortrait(int id, int portraitIndex)
     {
