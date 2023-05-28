@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class TouchHandler : MonoBehaviour
+public class TouchHandler_Ending : MonoBehaviour
 {
     public void LoadScene()
     {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
     }
 }

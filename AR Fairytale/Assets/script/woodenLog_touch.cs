@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class TouchHandler : MonoBehaviour
+public class woodenLog_touch : MonoBehaviour
 {
     public void LoadScene()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 10)
         {
             Touch touch = Input.GetTouch(0);
             SceneManager.LoadScene(1);
         }
     }
 }
-
-
