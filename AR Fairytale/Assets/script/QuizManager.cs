@@ -9,7 +9,7 @@ public class QuizManager : MonoBehaviour
     public TalkManager talkmanager;
     public int BingGo = 0;
     public bool isClicked = false;
-
+    public bool isChecked = false;
     private void Update()
     {
         if (isClicked)
@@ -18,12 +18,14 @@ public class QuizManager : MonoBehaviour
             Debug.Log("isClicked");
             isClicked = false;
         }
+
     }
     void InvokeDelay()
     {
         if (BingGo == 1)
         {
             Debug.Log("complete");
+            gamemanager.Button.SetActive(false);
             gamemanager.questPanel.SetActive(false);
             gamemanager.isAction = false;
         }

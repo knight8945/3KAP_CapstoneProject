@@ -50,120 +50,96 @@ public class TalkManager : MonoBehaviour
         
         //마을 사냥꾼과의 대화
         talkData.Add(2000, new string[] { "반갑구나. 빨간 망토야.:1","아침부터 부지런하구나:1" });
-        talkData.Add(2010, new string[] { "빨간 망토야 숲의 할머니를 만나러 가니?:1", "요즘 숲에 늑대가 나타났다는 소문이 돈단다.:1",
-            "이런 작은 숲에 늑대가 나올 것 같지 않지만, 혹시 모르니 조심하렴?:1"});
+        talkData.Add(2010, new string[] { "빨간 망토야 숲의 할머니를 만나러 가니?:1", "요즘 숲에 늑대가 나타났다는 소문이 돈단다.:2",
+            "이런 작은 숲에 늑대가 나올 것 같지 않지만, 혹시 모르니 조심하렴?:2"});
         talkData.Add(2015, new string[] { "네. 사냥꾼 할아버지! 조심할게요." });
-        talkData.Add(2020, new string[] { "조심하렴.:1"});
+        talkData.Add(2020, new string[] { "조심하렴.:2"});
 
         //통나무 Scene 스크립트 1 빨간망토 2 나레이션 3 늑대
-        talkData.Add(20000, new string[] { "빨간 망토가 숲길을 한참 가고 있을 때, 큰 문제가 나타났어요.","커다란 통나무가 길을 가로막고 있었던 것이에요.", "빨간 망토는 통나무를 밀어도 보고 당겨도 봤지만 통나무는 꿈쩍도 하지 않았어요."});
-        talkData.Add(10130, new string[] { "어떡하지.. 길은 여기밖에 없는데. 이러면 할머니를 만나러 갈 수 없어..." });
+        talkData.Add(20000, new string[] {"커다란 통나무가 길을 가로막고 있어...", "응차", "으..통나무를 밀어도 보고 당겨도 봤지만 꿈쩍도 하지 않아...", "어떡하지.. 길은 여기밖에 없는데. 이러면 할머니를 만나러 갈 수 없어..." });
         talkData.Add(20010, new string[] { "그때, 곤란해하던 빨간 망토의 뒤로 망토를 뒤집어쓴 커다란 남자가 나타났어요." });
-        talkData.Add(30000, new string[] { "거기 꼬마 아가씨. 어디 곤란한 일이라도 있니?" });
-        talkData.Add(10140, new string[] { "어? 아저씨는 누구세요?" });
-        talkData.Add(30010, new string[] { "나는 지나가던 나그네란다. 검은 망토 아저씨라고 불러주렴." });
-        talkData.Add(10150, new string[] { "검은 망토요? 저는 빨간 망토라고 불려요. 정말 신기하네요!" });
-        talkData.Add(30020, new string[] { "하하하!! 이거 재미있는 우연이구나.","그래서 우리 빨간 망토는 여기서 무엇을 하고 있었니?" });
-        talkData.Add(10160, new string[] { "할머니 병문안을 가고 있었는데 통나무가 길을 막아버렸어요..", "할머니가 혼자서 기다리고 계실 텐데.. 어떻게 하죠?" });
-        talkData.Add(30030, new string[] { "호오 그럼 이 꼬마랑 할머니, 둘 다 잡아먹을 수 있겠군!"});
-        talkData.Add(10170, new string[] { "네? 뭐라고 하셨나요?" });
-        talkData.Add(30040, new string[] { "아니, 아무것도 아니란다. 그보다 그렇다면 이 검은 망토 아저씨가 도와줄 수 있을 것 같구나." });
-        talkData.Add(10180, new string[] { "네? 정말요?" });
-        talkData.Add(30050, new string[] { "그럼. 이 아저씨랑 같이 나무를 밀면 될 꺼란다. 둘이 힘을 합치면 충분히 할 수 있을 거야.","하나, 둘, 셋 할때 밀면 된단다." });
-        talkData.Add(10190, new string[] { "앗, 네 알았어요!" });
+        talkData.Add(20020, new string[] { "거기 꼬마 아가씨.:4 ","어디 곤란한 일이라도 있니?:4" });
+        talkData.Add(20030, new string[] { "어? 아저씨는 누구세요?" });
+        talkData.Add(20040, new string[] { "나는 지나가던 나그네란다. 검은 망토 아저씨라고 불러주렴.", "검은 망토요? 저는 빨간 망토라고 불려요. 정말 신기하네요!" });
+        talkData.Add(20050, new string[] { "하하하!! 이거 재미있는 우연이구나.","그래서 우리 빨간 망토는 여기서 무엇을 하고 있었니?", "할머니 병문안을 가고 있었는데 통나무가 길을 막아버렸어요..", "할머니가 혼자서 기다리고 계실 텐데.. 어떻게 하죠?" });
+        talkData.Add(20060, new string[] { "(호오 그럼 이 꼬마랑 할머니, 둘 다 잡아먹을 수 있겠군!)"});
+        talkData.Add(20070, new string[] { "네? 뭐라고 하셨나요?" });
+        talkData.Add(20080, new string[] { "아니, 아무것도 아니란다. 그보다 그렇다면 이 검은 망토 아저씨가 도와줄 수 있을 것 같구나." });
+        talkData.Add(20090, new string[] { "네? 정말요?" });
+        talkData.Add(20100, new string[] { "그럼. 이 아저씨랑 같이 나무를 밀면 될 꺼란다. 둘이 힘을 합치면 충분히 할 수 있을 거야.","하나, 둘, 셋 할때 밀면 된단다." });
+        talkData.Add(20110, new string[] { "앗, 네 알았어요!" });
         // AR 이벤트 #2 후
         //실패
-        talkData.Add(30060, new string[] { "음, 다시 한번 해보자꾸나. 하나, 둘, 셋!" });
+        talkData.Add(20115, new string[] { "음, 다시 한번 해보자꾸나. 하나, 둘, 셋!" });
         //성공
-        talkData.Add(10200, new string[] { "와! 정말로 성공했어요! 아저씨 정말로 고맙습니다." });
-        talkData.Add(30070, new string[] { "후후 이정도는 별거 아니란다.", "그럼 이제 나는 그만 가보도록 하마.","할머니 병문안은 잘 하고 오너라." });
-        talkData.Add(10210, new string[] { "네. 아저씨 안녕히 가세요." });
-        talkData.Add(10220, new string[] { "엄청 서둘러서 가시네. 많이 바쁘신가 보다." });
+        talkData.Add(20120, new string[] { "와! 정말로 성공했어요! 아저씨 정말로 고맙습니다." });
+        talkData.Add(20130, new string[] { "후후 이정도는 별거 아니란다.", "그럼 이제 나는 그만 가보도록 하마.","할머니 병문안은 잘 하고 오너라.", "네. 아저씨 안녕히 가세요.", "엄청 서둘러서 가시네. 많이 바쁘신가 보다." });
 
         // 꽃밭 
-        talkData.Add(20020, new string[] { "통나무로 막혔던 길을 지나쳐 개울을 건넌 빨간 망토는 꽃밭으로 가는 갈림길에 도착했어요." });
-        talkData.Add(10230, new string[] { "엄마가 할머니께 드릴 꽃을 가져가라고 하셨지. 무슨 색이었더라?" });
-        talkData.Add(10240, new string[] { "꽃을 가져가야 해." });
+        talkData.Add(20170, new string[] { "엄마가 할머니께 드릴 꽃을 가져가라고 하셨지. 무슨 색이었더라?" });
+        talkData.Add(20180, new string[] { "꽃을 가져가야 해." });
 
         //AR 이벤트 #3
          //실패
-        talkData.Add(10250, new string[] { "윽! 이 꽃은 냄새가 너무 이상해 잘못 골랐나 봐." });
+        talkData.Add(20185, new string[] { "윽! 이 꽃은 냄새가 너무 이상해 잘못 골랐나 봐." });
          //성공
-        talkData.Add(10260, new string[] { "이 꽃은 향기가 너무 좋다. 할머니도 좋아하실 거야." });
-        talkData.Add(20030, new string[] { "다시 길을 나서려던 빨간 망토는 알록달록한 꽃들과 날아다니는 나비들을 발견했어요." ," 빨간 망토는 그것들이 너무나 예뻐 보였답니다."});
-        talkData.Add(10270, new string[] { "조금만 구경하고 가도 괜찮겠지?" });
+        talkData.Add(20190, new string[] { "이 꽃은 향기가 너무 좋다. 할머니도 좋아하실 거야.", "다시 길을 나서려던 빨간 망토는 알록달록한 꽃들과 \n날아다니는 나비들을 발견했어요.", " 빨간 망토는 그것들이 너무나 예뻐 보였답니다.", "조금만 구경하고 가도 괜찮겠지?" });
         //암전
 
         //4. 오두막 앞
-        talkData.Add(20040, new string[] { "빨간 망토가 꽃밭에서 쉬고 있을 때, 할머니의 오두막 앞에 검은 망토 아저씨가 나타났어요.","검은 망토 아저씨는 주변을 두리번거리더니 망토를 벗어던졌어요.","그러니 그 속에서 커다란 늑대가 나타났어요","검은 망토 아저씨의 정체는 늑대였던 것이에요!"});
-        talkData.Add(30080, new string[] { "숲 속에 혼자 사는 할머니의 집이 여기가 틀림없군.","후후 오랜만에 정말 배불리 먹을 수 있겠군!" });
-        talkData.Add(20050, new string[] { "늑대는 할머니의 집 앞에서 목을 가다듬더니 빨간 망토의 목소리를 흉내 내기 시작했어요."});
-        talkData.Add(30090, new string[] { "할머니 저 빨간망토 왔어요!","몸은 좀 괜찮으신가요?" });
-        talkData.Add(40000, new string[] { "오오 우리 손녀 빨간 망토가 왔구나." });
-        talkData.Add(30100, new string[] { "크아아아앙!" });
-        talkData.Add(20060, new string[] { "할머니가 반갑게 문을 열자 늑대는 순식간에 할머니를 삼켜버렸어요." });
-        talkData.Add(30110, new string[] { "크흐흐 정말 쉽군. 이제는 빨간 망토가 오는 것을 기다리기만 하면 되겠어." });
-        talkData.Add(20070, new string[] { "늑대는 배를 두드리며 만족스럽게 웃고는 오두막 안으로 들어갔어요." });
-        //암전
+        talkData.Add(20200, new string[] { "빨간 망토가 꽃밭에서 쉬고 있을 때, 할머니의 오두막 앞에 검은 망토 아저씨가 나타났어요.","검은 망토 아저씨는 주변을 두리번거리더니 망토를 벗어던졌어요.","그러니 그 속에서 커다란 늑대가 나타났어요","검은 망토 아저씨의 정체는 늑대였던 것이에요!"});
+        talkData.Add(20210, new string[] { "숲 속에 혼자 사는 할머니의 집이 여기가 틀림없군.:4","후후 오랜만에 정말 배불리 먹을 수 있겠군!:4" });
+        talkData.Add(20220, new string[] { "늑대는 할머니의 집 앞에서 목을 가다듬더니 빨간 망토의 목소리를 흉내 내기 시작했어요."});
+        talkData.Add(20230, new string[] { "할머니 저 빨간망토 왔어요!","몸은 좀 괜찮으신가요?", "오오 우리 손녀 빨간 망토가 왔구나.", "크아아아앙!" });
+        talkData.Add(20240, new string[] { "앗.. 엄마가 한눈 팔지 말라고 그랬는데!!!","빨리 할머니집에 가야겠어!!" });
+        //암전    
 
         //5. 꽃밭
-        talkData.Add(10280, new string[] { "앗! 엄마가 한눈팔면 안 된다고 하셨는데!" });
-        talkData.Add(20080, new string[] { "뒤늦게 엄마의 당부를 기억해낸 빨간 망토는 다시 할머니의 집을 향해 발걸음을 재촉했어요." });
 
         //6. 오두막 앞
-        talkData.Add(10290, new string[] { "어? 왜 문이 열려 있지? 할머니가 미리 열어두셨나?" });
 
         //7. 오두막 안
-        talkData.Add(10300, new string[] { "어? 왜 문이 열려 있지? 할머니가 미리 열어두셨나?" });
-        talkData.Add(20090, new string[] { "오두막 안은 불이 전부 꺼져 있어 매우 어두웠어요.", "빨간 망토는 가까스로 침대 위에 누군가가 누워 있다는 것을 알 수 있었어요." });
-        talkData.Add(30120, new string[] { "오오 우리 빨간 망토 왔구나." });
-        talkData.Add(10310, new string[] { "할머니 많이 아프세요?" });
-        talkData.Add(30130, new string[] { "할머니는 괜찮단다. 조금 피곤할 뿐이야." });
-        talkData.Add(10320, new string[] { "어! 할머니 귀가 왜 그렇게 커지셨어요?" });
-        talkData.Add(20100, new string[] { "할머니는 잠깐 말이 없었지만 곧 대답하시기 시작했어요." });
-        talkData.Add(30140, new string[] { "아 이건 우리 귀여운 빨간 망토의 목소리를 더 잘 들으려고 커진 거란다." });
-        talkData.Add(10330, new string[] { "지금 보니까 손도 엄청 커지신 것 같아요!" });
-        talkData.Add(30150, new string[] { "이건 우리 빨간 망토를 더 따뜻하게 안아주기 위해서지." });
-        talkData.Add(10340, new string[] { "할머니 입도 커지셨어요!" });
-        talkData.Add(30160, new string[] { "그건 바로 너를 한 입에 잡아먹기 위해서지!","크아아아앙!" });
+        talkData.Add(20300, new string[] { "오오 우리 빨간 망토 왔구나.", "할머니 많이 아프세요?", "할머니는 괜찮단다. 조금 피곤할 뿐이야.", "어! 할머니 귀가 왜 그렇게 커지셨어요?", "할머니?"});
+        talkData.Add(20310, new string[] { "아 이건 우리 귀여운 빨간 망토의 목소리를 더 잘 들으려고 커진 거란다.", "지금 보니까 손도 엄청 커지신 것 같아요!", "이건 우리 빨간 망토를 더 따뜻하게 안아주기 위해서지." });
+        talkData.Add(20320, new string[] { "할머니 입도 커지셨어요!" });
+        talkData.Add(20330, new string[] { "그건 바로 너를 한 입에 잡아먹기 위해서지!","크아아아앙!" });
 
         //AR 이벤트 #4
 
         //8. 오두막 앞
-        talkData.Add(20110, new string[] { "한편 늑대가 잠에 빠져있었을 때, 사냥꾼 아저씨는 숲을 순찰 중에 특이한 것을 발견했어요." });
-        talkData.Add(2030, new string[] { "아니 이것은 늑대 발자국? ","정말로 이 숲에 늑대가 나타나다니!","큰일이군..", "서둘러 찾지 않으면 누군가 크게 다칠지도 모르겠어." });
-        talkData.Add(2040, new string[] { "늑대의 흔적을 따라가 보자" });
+        talkData.Add(2030, new string[] { "한편 늑대가 잠에 빠져있었을 때, 사냥꾼 아저씨는 숲을 순찰 중에 특이한 것을 발견했어요." });
+        talkData.Add(2050, new string[] { "아니 이것은 늑대 발자국? ","정말로 이 숲에 늑대가 나타나다니!","큰일이군..", "서둘러 찾지 않으면 누군가 크게 다칠지도 모르겠어." });
+        talkData.Add(2060, new string[] { "늑대의 흔적을 따라가 보자" });
         //미니게임
-        //맵이탈시
-        talkData.Add(2050, new string[] { "이쪽이 아니야." });
         //실패
-        talkData.Add(2060, new string[] { "이쪽이 아닌가? 다시 찾아봐야겠군." });
-        //성공
-        talkData.Add(2070, new string[] { "발자국은 이쪽으로 이어지는군. 할머니의 오두막으로 가봐야겠어." });
-        
+        talkData.Add(2070, new string[] { "내가 본 늑대랑 다른거 같아. 날카로운 발톱에 검정색 모피였었지." });
+        //발자국 성공
+        talkData.Add(2080, new string[] { "발자국은 이쪽으로 이어지는군. 계속 찾아봐야겠어" });
+        //모피 성공
+        talkData.Add(2090, new string[] { "모피가 이쪽으로 이어지는군. 할머니의 오두막으로 가봐야겠어." });
         //9. 오두막 안
-        talkData.Add(20120, new string[] { "오두막 안으로 들어선 사냥꾼 아저씨는 침대에서 자고 있는 커다란 늑대를 발견했어요.", "부풀어 오른 늑대의 배를 보고 빨간 망토와 할머니가 어떻게 되었는지도 알 수 있었지요." });
-        talkData.Add(2080, new string[] { "이럴수가! 어떻게 해야 하지?" });
+        talkData.Add(2100, new string[] { "오두막 안으로 들어선 사냥꾼 아저씨는 침대에서 자고 있는 커다란 늑대를 발견했어요.", "부풀어 오른 늑대의 배를 보고 빨간 망토와 할머니가 어떻게 되었는지도 알 수 있었지요." });
+        talkData.Add(2110, new string[] { "이럴수가! 어떻게 해야 하지?" });
         //1번 선택 실패
-        talkData.Add(2090, new string[] { "아니야 아직 늦지 않았을지도 몰라!" });
+        talkData.Add(2115, new string[] { "아니야 아직 늦지 않았을지도 몰라!" });
         //3번 선택 실패
-        talkData.Add(2100, new string[] { "늑대를 깨웠다가는 큰일이 날 거야." });
-        talkData.Add(20130, new string[] { "사냥꾼 아저씨는 서둘러서 가위를 꺼내 늑대의 배를 갈랐어요.", "다행히도 빨간 망토와 할머니는 살아있었어요.", "빨간 망토와 할머니는 사냥꾼의 도움으로 무사히 늑대의 배속에서 탈출할 수 있었어요." });
-        talkData.Add(10350, new string[] { "으아앙! 정말 무서웠어요!" });
-        talkData.Add(40010, new string[] { "정말 고맙네. 자네가 없었으면 어떻게 됐을지 모르겠군." });
-        talkData.Add(2110, new string[] { "아직 끝난 게 아닙니다. 이 늑대에게 마땅한 벌을 줘야지요.", "저에게 생각이 있습니다." });
-        talkData.Add(20140, new string[] { "사냥꾼 아저씨는 늑대에 배에 커다란 돌덩이를 집어넣고 그대로 꿰매버렸어요.", "그리고는 빨간 망토와 할머니를 데리고 오두막 밖으로 나갔지요." });
+        talkData.Add(2125, new string[] { "늑대를 깨웠다가는 큰일이 날 거야." });
+        // 성공시
+        talkData.Add(2120, new string[] { "사냥꾼 아저씨는 서둘러서 가위를 꺼내 늑대의 배를 갈랐어요.", "다행히도 빨간 망토와 할머니는 살아있었어요.", "빨간 망토와 할머니는 사냥꾼의 도움으로 무사히 늑대의 배속에서 탈출할 수 있었어요." });
+        talkData.Add(2130, new string[] { "으아앙! 정말 무서웠어요!" });
+        talkData.Add(2140, new string[] { "정말 고맙네. 자네가 없었으면 어떻게 됐을지 모르겠군." });
+        talkData.Add(2150, new string[] { "아직 끝난 게 아닙니다. 이 늑대에게 마땅한 벌을 줘야지요.", "저에게 생각이 있습니다.", "사냥꾼 아저씨는 늑대에 배에 커다란 돌덩이를 집어넣고 그대로 꿰매버렸어요.", "그리고는 빨간 망토와 할머니를 데리고 오두막 밖으로 나갔지요." });
 
         //10 오두막 앞
-        talkData.Add(20150, new string[] { "잠시 후 잠에서 깬 늑대가 오두막 밖으로 나왔어요." });
-        talkData.Add(30170, new string[] { "음 목이 마르군. 저 연못에서 물을 마셔야겠어." });
-        talkData.Add(20160, new string[] { "늑대가 연못 앞에서 고개를 숙이는 순간 수풀에 숨어있던 사냥꾼이 튀어나왔어요." });
-        talkData.Add(2120, new string[] { "이얏!" });
+        talkData.Add(2160, new string[] { "잠시 후 잠에서 깬 늑대가 오두막 밖으로 나왔어요." });
+        talkData.Add(2170, new string[] { "음 목이 마르군. 저 연못에서 물을 마셔야겠어." });
+        talkData.Add(2180, new string[] { "늑대가 연못 앞에서 고개를 숙이는 순간 수풀에 숨어있던 사냥꾼이 튀어나왔어요." });
+        talkData.Add(2190, new string[] { "이얏!" });
 
         // AR이벤트 #5
 
         //OUTRO IMAGE
-        talkData.Add(20170, new string[] { "그 후로 빨간 망토와 할머니는 다시는 늑대에게 잡아먹히는 일 없이 오래오래 행복하게 살았답니다." });
+        talkData.Add(2200, new string[] { "그 후로 빨간 망토와 할머니는 다시는 늑대에게 잡아먹히는 일 없이 오래오래 행복하게 살았답니다." });
 
         //오브젝트 대화
         talkData.Add(100, new string[] { "엄마랑 사는 우리집이다." });
@@ -173,6 +149,9 @@ public class TalkManager : MonoBehaviour
         talkData.Add(400, new string[] { "어! 정말 잘 익었네!! 이 밀이 맞는 것 같아!!" });
         talkData.Add(500, new string[] { "박스 안에서 잘 숙성된 포도주를 찾았다." });
         talkData.Add(600, new string[] { "왼쪽에서 4번째줄에 아래쪽에서 2번째 였던것 같아.." });
+        talkData.Add(700, new string[] { "오른쪽에 있는 통나무에 가보자!" });
+        talkData.Add(710, new string[] { "할머니집에 가보자" });
+        talkData.Add(720, new string[] { "물가 옆에 있는 꽃밭으로 가보자!" });
         //portraitData.Add(1000 + 0, portraitArr[0]); //일반표정
         //portraitData.Add(1000 + 1, portraitArr[1]); //기쁜표정
         //portraitData.Add(1000 + 2, portraitArr[2]); //걱정표정
@@ -180,6 +159,13 @@ public class TalkManager : MonoBehaviour
         portraitData.Add(2000 + 0, portraitArr[0]); //일반표정
         portraitData.Add(2000 + 1, portraitArr[1]); //기쁜표정
         portraitData.Add(2000 + 2, portraitArr[2]); //걱정표정
+        portraitData.Add(2010 + 1, portraitArr[1]); //기쁜표정
+        portraitData.Add(2010 + 2, portraitArr[2]); //걱정표정
+        portraitData.Add(2020 + 2, portraitArr[2]); //걱정표정
+        portraitData.Add(20020 + 4, portraitArr[4]);
+        portraitData.Add(20210 + 4, portraitArr[4]);
+        portraitData.Add(20290 + 4, portraitArr[4]);
+        portraitData.Add(20330 + 4, portraitArr[4]);
         //portraitData.Add(2000 + 3, portraitArr[3]);
     }
     public string GetTalk(int id, int talkIndex)
