@@ -18316,6 +18316,19 @@ struct introScript_tF23F3AAC2BB5560056B43B9FBDEA920861E38713  : public MonoBehav
 	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___dialogues_6;
 };
 
+// woodenLog_touch
+struct woodenLog_touch_t61376DD4390E66921EE28ECEE18C66877C3AB469  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	// UnityEngine.GameObject woodenLog_touch::wood
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___wood_4;
+	// UnityEngine.GameObject woodenLog_touch::check
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___check_5;
+	// System.Int32 woodenLog_touch::touchCount
+	int32_t ___touchCount_6;
+	// UnityEngine.UI.Button woodenLog_touch::touchButton
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___touchButton_7;
+};
+
 // UnityEngine.UI.Dropdown/DropdownItem
 struct DropdownItem_t3D307172264EF209B266052B655D7D4314E660F8  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
@@ -21908,6 +21921,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable7249[2] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable7250[3] = 
 {
 	static_cast<int32_t>(offsetof(introScript_tF23F3AAC2BB5560056B43B9FBDEA920861E38713, ___textUI_4)),static_cast<int32_t>(offsetof(introScript_tF23F3AAC2BB5560056B43B9FBDEA920861E38713, ___currentDialogueIndex_5)),static_cast<int32_t>(offsetof(introScript_tF23F3AAC2BB5560056B43B9FBDEA920861E38713, ___dialogues_6)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable7253[4] = 
+{
+	static_cast<int32_t>(offsetof(woodenLog_touch_t61376DD4390E66921EE28ECEE18C66877C3AB469, ___wood_4)),static_cast<int32_t>(offsetof(woodenLog_touch_t61376DD4390E66921EE28ECEE18C66877C3AB469, ___check_5)),static_cast<int32_t>(offsetof(woodenLog_touch_t61376DD4390E66921EE28ECEE18C66877C3AB469, ___touchCount_6)),static_cast<int32_t>(offsetof(woodenLog_touch_t61376DD4390E66921EE28ECEE18C66877C3AB469, ___touchButton_7)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable7256[3] = 
 {
 	static_cast<int32_t>(offsetof(ChatController_t21BE953E1D5ADF0BA9F3B03C205203CADDC64C15, ___ChatInputField_4)),static_cast<int32_t>(offsetof(ChatController_t21BE953E1D5ADF0BA9F3B03C205203CADDC64C15, ___ChatDisplayOutput_5)),static_cast<int32_t>(offsetof(ChatController_t21BE953E1D5ADF0BA9F3B03C205203CADDC64C15, ___ChatScrollbar_6)),};

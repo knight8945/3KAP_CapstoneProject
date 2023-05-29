@@ -27723,6 +27723,14 @@ struct newread_t0683738BC404DEB7B0EA6BABFF3E504821F19404  : public MonoBehaviour
 // woodenLog_touch
 struct woodenLog_touch_t61376DD4390E66921EE28ECEE18C66877C3AB469  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
+	// UnityEngine.GameObject woodenLog_touch::wood
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___wood_4;
+	// UnityEngine.GameObject woodenLog_touch::check
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___check_5;
+	// System.Int32 woodenLog_touch::touchCount
+	int32_t ___touchCount_6;
+	// UnityEngine.UI.Button woodenLog_touch::touchButton
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___touchButton_7;
 };
 
 // UnityEngine.UI.Dropdown/DropdownItem

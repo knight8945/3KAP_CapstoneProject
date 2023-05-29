@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/5_WolfFallingScene.unity
-    guid: f9e149ee88a3444b186f1ee64c8451d8
+    path: Assets/Scenes/3_WoodLog_Clean.unity
+    guid: d40e99ffc880f493480dd961a790b051
   - enabled: 1
     path: Assets/Scenes/1_IntroScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/5_WolfFallingScene.unity
+    guid: f9e149ee88a3444b186f1ee64c8451d8
+  - enabled: 1
     path: Assets/Scenes/2_food_choice.unity
     guid: bc0e0e50cb3f2824fa1bd7bb89ede49b
-  - enabled: 1
-    path: Assets/Scenes/3_WoodLog_Clean.unity
-    guid: d40e99ffc880f493480dd961a790b051
   - enabled: 1
     path: Assets/Scenes/4_FlowerSelectScene.unity
     guid: 22935f7f5ad884fbe93d75cfadc4d20b
