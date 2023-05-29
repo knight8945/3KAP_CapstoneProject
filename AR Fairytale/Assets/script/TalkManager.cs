@@ -24,7 +24,7 @@ public class TalkManager : MonoBehaviour
         //빨간 망토 집
         // 만의 자리 빨간망토 1 / 나레이션 2 / 늑대 3 // 할머니 4
         // 천의 자리 엄마 1 / 사냥꾼 2
-
+        talkData.Add(10, new string[] { "높은 식탁에 있는 걸 엄마가 내려주었나봐" });
         //엄마와의 대화(화면 어둡게) 
         talkData.Add(1000, new string[] { ".. 어서 일어나렴.", "빨간 망토야.." });
             //화면 밝아짐
@@ -112,11 +112,11 @@ public class TalkManager : MonoBehaviour
         talkData.Add(2060, new string[] { "늑대의 흔적을 따라가 보자" });
         //미니게임
         //실패
-        talkData.Add(2070, new string[] { "내가 본 늑대랑 다른거 같아. 날카로운 발톱에 검정색 모피였었지." });
+        talkData.Add(2070, new string[] { "내가 본 늑대랑 다른거 같아. 날카로운 발톱에 검정색 늑대였었지." });
         //발자국 성공
         talkData.Add(2080, new string[] { "발자국은 이쪽으로 이어지는군. 계속 찾아봐야겠어" });
         //모피 성공
-        talkData.Add(2090, new string[] { "모피가 이쪽으로 이어지는군. 할머니의 오두막으로 가봐야겠어." });
+        talkData.Add(2090, new string[] { "검은색 털이 여기에 떨어져있군. 할머니의 오두막으로 가봐야겠어." });
         //9. 오두막 안
         talkData.Add(2100, new string[] { "오두막 안으로 들어선 사냥꾼 아저씨는 침대에서 자고 있는 커다란 늑대를 발견했어요.", "부풀어 오른 늑대의 배를 보고 빨간 망토와 할머니가 어떻게 되었는지도 알 수 있었지요." });
         talkData.Add(2110, new string[] { "이럴수가! 어떻게 해야 하지?" });
@@ -132,7 +132,8 @@ public class TalkManager : MonoBehaviour
 
         //10 오두막 앞
         talkData.Add(2160, new string[] { "잠시 후 잠에서 깬 늑대가 오두막 밖으로 나왔어요." });
-        talkData.Add(2170, new string[] { "음 목이 마르군. 저 연못에서 물을 마셔야겠어." });
+        talkData.Add(1800, new string[] { "에잇!!" });
+        talkData.Add(1810, new string[] { "떨어져라 이 못된 늑대야!!" });
         talkData.Add(2180, new string[] { "늑대가 연못 앞에서 고개를 숙이는 순간 수풀에 숨어있던 사냥꾼이 튀어나왔어요." });
         talkData.Add(2190, new string[] { "이얏!" });
 

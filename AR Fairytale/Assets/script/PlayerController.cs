@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -12,8 +13,14 @@ public class PlayerController : MonoBehaviour
     Vector3 lookDirection;
     public GameObject Player;
     public GameObject Player2;
+    public GameObject wolf2;
+    public GameObject wolf3;
+    public GameObject Player3;
+    public GameObject RealGM;
     public Transform playerTransform;
     public Transform cameraTransform;
+    public string target;
+    public int indicater = 0;
     GameObject scanObject;
     enum States
     {
@@ -43,14 +50,110 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "ChangeScene")
+            indicater = 1;
+        if (collision.transform.tag == "ChangeEnding")
+            indicater = 2;
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        indicater = 0;
+    }
     void Update()
     {
+
         if (manager.playerswitch == 1)
         {
+            Player.transform.position = new Vector3(55, -43, 0);
             Player.SetActive(false);
             Player2.SetActive(true);
             playerTransform = GameObject.Find("Player2").GetComponent<Transform>();
         }
+        if (manager.count == 1)
+        {
+            manager.talkPanel.SetActive(true);
+            manager.isAction = true;
+            manager.talkText.text = "빨리 할머니집으로 가야겠어!!";
+            Invoke("CountUp", 2.0f);
+            manager.count = 2;
+        }
+        if (manager.count == 3)
+        {
+            manager.talkPanel.SetActive(true);
+            manager.isAction = true;
+            manager.talkText.text = "할머니? 어디 계세요? 아! 침대에 계시구나";
+            Invoke("CountUp", 2.0f);
+            manager.count = 4;
+        }
+        if (manager.playerswitch == 1 && manager.count == 7 && manager.wolfquest == 0)
+        {
+            manager.talkPanel.SetActive(true);
+            manager.isAction = true;
+            manager.wolf.SetActive(false);
+            manager.wolf_0.SetActive(true);
+            manager.talkText.text = "한편 사냥꾼 아저씨가 순찰 중 이상한 것을 발견했어요!";
+            playerTransform.position = new Vector3(54f, -22f, 0);
+            cameraTransform.position = new Vector3(60, -20, -1);
+            Invoke("CountUp", 2.0f);
+            manager.count = 8;
+        }
+        if (manager.wolfquest == 1 && manager.count == 8)
+        {
+            manager.talkPanel.SetActive(true);
+            manager.isAction = true;
+            manager.wolf.SetActive(false);
+            manager.wolf_0.SetActive(true);
+            manager.talkText.text = "늑대의 발자국을 쫒아가보자!";
+            //Invoke("CountUp", 2.0f);
+            playerTransform.position = new Vector3(60, -38, 0);
+            cameraTransform.position = new Vector3(60, -38, -1);
+            manager.count = 9;
+
+        }
+        else if(manager.wolfquest == 2 && manager.count == 11)
+        {
+            Player.SetActive(true);
+            Player.transform.position = new Vector3(89, -38, 0);
+            Player.SetActive(false);
+            playerTransform.position = new Vector3(89, -35, 0);
+            cameraTransform.position = new Vector3(88, -38, -1);
+            manager.count = 12;
+           
+        }
+        if (manager.count == 10 && manager.wolfquest != 7)
+        {
+            playerTransform.position = new Vector3(60, -38, 0);
+            cameraTransform.position = new Vector3(60, -38, -1);
+            manager.talkPanel.SetActive(false);
+            manager.isAction = false;
+            manager.count = 11;
+        }
+        else if (manager.wolfquest == 1 && manager.count == 9)
+        {
+            manager.talkPanel.SetActive(false);
+            playerTransform.position = new Vector3(60, -38, 0);
+            cameraTransform.position = new Vector3(60, -38, -1);
+            Invoke("CountDown", 2.0f);
+        }
+        if(manager.wolfquest == 7 && manager.count != 12)
+        {
+            manager.talkPanel.SetActive(true);
+            manager.talkText.text = "잠시 후 잠에서 깬 늑대가 오두막 밖으로 나왔어요.";
+            Invoke("CountDown", 3.0f);
+            manager.wolf_0.SetActive(false);
+            Player.SetActive(true);
+            Player.transform.position = new Vector3(60, -25, 0);
+            Player.SetActive(false);
+            playerTransform.position = new Vector3(63f, -22f, 0);
+            cameraTransform.position = new Vector3(60, -20, -1);
+            Invoke("CountDraw", 3.0f);
+            //manager.wolfquest =7 and manager.count = 10
+        }
+
         // 캐릭터 이동 제어 스크립트(화면으로 보았을때)
         if (manager.isAction ? false : Input.GetKey(KeyCode.LeftArrow)) //좌측 이동
         {
@@ -198,9 +301,18 @@ public class PlayerController : MonoBehaviour
             cameraTransform.position = new Vector3(30, -20, -1);
         }
         // 플레이 shack -> 할머니집 이동
-        else if (playerTransform.position.x > 64.5 && playerTransform.position.x < 65.5 && playerTransform.position.y > -20 && playerTransform.position.y < -19 )
+        else if (playerTransform.position.x > 64.5 && playerTransform.position.x < 65.5 && playerTransform.position.y > -20 && playerTransform.position.y < -19 || manager.wolfquest == 3 )
         {
             manager.count = 3;
+            if (manager.wolfquest == 3)
+            {
+                Player.SetActive(true);
+                Player.transform.position = new Vector3(67, -3, 0);
+                Player.SetActive(false);
+                manager.count = 13;
+                manager.wolfquest = 4;
+                wolf2.SetActive(true);
+            }
             playerTransform.position = new Vector3(67, -3, 0);
             cameraTransform.position = new Vector3(73, 0, -1);
         }
@@ -210,58 +322,42 @@ public class PlayerController : MonoBehaviour
             playerTransform.position = new Vector3(65, -20.5f, 0);
             cameraTransform.position = new Vector3(60, -20, -1);
         }
+        
         // incameraCharacter 함수 이용
         else
         {
-            incameraCharacter();
+             incameraCharacter();
         }
+       if(manager.wolfquest == 5)
+        {
+            RealGM.SetActive(true);
+            Player3.SetActive(true);
+        }
+        if (manager.wolfquest == 6)
+        {
+            RealGM.SetActive(false);
+            Player3.SetActive(false);
+            manager.wolfquest = 7;
+        }
+
+
         //Scan Object
         if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
             manager.Action(scanObject);
 
-        if(manager.count == 1)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction= true;
-            manager.talkText.text = " 앗 엄마가 한 눈 팔지 말라고 했는데!! 빨리 할머니집으로 가야겠어!!";
-            Invoke("CountUp", 2.0f);
-            manager.count = 2;
-        }
-        if(manager.count == 3)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.talkText.text = "할머니? 어디 계세요? 아! 침대에 계시구나";
-            Invoke("CountUp", 2.0f);
-            manager.count = 4;
-        }
-        if(manager.playerswitch == 1 && manager.count == 7 && manager.wolfquest == 0)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.wolf.SetActive(false);
-            manager.wolf_0.SetActive(true);
-            manager.talkText.text = "한편 사냥꾼 아저씨가 순찰 중 이상한 것을 발견했어요!";
-            playerTransform.position = new Vector3(60, -18, 0);
-            cameraTransform.position = new Vector3(60, -18, -1);
-            Invoke("CountUp", 2.0f);
-            manager.count = 8;
-        }
-        if (manager.wolfquest == 1 && manager.count == 8)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.wolf.SetActive(false);
-            manager.wolf_0.SetActive(true);
-            manager.talkText.text = "늑대의 발자국을 쫒아가보자!";
-            Invoke("CountUp", 2.0f);
-            cameraTransform.position = new Vector3(60, -38, -1);
-            manager.count = 9;
-            
-        }
 
 
 
+
+    }
+    void CountDraw()
+    {
+        manager.count = 12;
+        manager.talkPanel.SetActive(false);
+    }
+    void CountDown()
+    {
+        manager.count = 10;
     }
     void CountUp()
     {

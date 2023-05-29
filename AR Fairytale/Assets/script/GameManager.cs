@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public TalkManager talkManager;
     public QuestManager questManager;
     public QuizManager quizManager;
+    public SceneChanger changer;
     public GameObject talkPanel; // 액션때만 대화창 띄우기
     public GameObject questPanel;
     public GameObject Button;
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject tree;
     public GameObject gm;
     public GameObject wolf_0;
+    public GameObject wolf3;
+    public GameObject box;
     public Image portraitImg;
     public TextMeshProUGUI talkText;
     public TextMeshProUGUI quizText;
@@ -34,9 +37,11 @@ public class GameManager : MonoBehaviour
     public int wolfswitch = 0;
     public int count = 0;
     public int wolfquest = 0;
+    public int change = 0;
     private void Start()
     {
         //Debug.Log(questManager.CheckQuest());
+        DontDestroyOnLoad(gameObject);
     }
     public void Action(GameObject scanObj)
     {
@@ -54,7 +59,6 @@ public class GameManager : MonoBehaviour
             countGrape = 0;
             self = 1;
         }
-
         if (next)
         {
             next = false;
@@ -162,7 +166,12 @@ public class GameManager : MonoBehaviour
             case 1040:
             case 1050:
             case 1070:
+                next = true;
+                break;
             case 1080:
+                next = true;
+                box.SetActive(true);
+                break;
             case 1090:
             case 1100:
             case 1110:
@@ -214,6 +223,7 @@ public class GameManager : MonoBehaviour
                 next = true;
                 gm.SetActive(false);
                 wolf.SetActive(true);
+                wolf.transform.position = new Vector3(56f, -20f, 0);
                 count = 7;
                 playerswitch = 1;
                 break;
@@ -223,9 +233,9 @@ public class GameManager : MonoBehaviour
             case 2060:
                 wolfquest = 1;
                 next = false;
-                playerController.cameraTransform.position = new Vector3(60, -50, -1);
-                playerController.playerTransform.position = new Vector3(60, -50, -1);
-                Debug.Log("이동");
+                break;
+            case 2070:
+                next = false;
                 break;
             case 2080:
                 next = true;
@@ -233,7 +243,17 @@ public class GameManager : MonoBehaviour
                 break;
             case 2090:
                 next = true;
+                wolf.SetActive(false);
+                wolf3.SetActive(true);
                 wolfquest = 3;
+                break;
+            case 2120:
+                next = true;
+                wolfquest = 5;
+                break;
+            case 2150:
+                next = true;
+                wolfquest = 6;
                 break;
             default:
                 next = true;
