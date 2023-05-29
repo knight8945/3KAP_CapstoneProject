@@ -11,7 +11,7 @@ public class TouchHandler : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("main");
         }
     }
 }
