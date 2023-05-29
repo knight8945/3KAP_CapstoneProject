@@ -21,20 +21,20 @@ public class SceneChanger : MonoBehaviour
     {
         if (Player.GetComponent<PlayerController>().indicater == true)
         {
-            StartCoroutine(FadeCoroutine());
+            // StartCoroutine(FadeCoroutine());
             SceneManager.LoadScene("start");
         }
     }
 
-    IEnumerator FadeCoroutine()
-    {
-        float fadecount = 0;
+    // IEnumerator FadeCoroutine()
+    // {
+    //     float fadecount = 0;
 
-        while (fadecount < 1.0f)
-        {
-            fadecount += 0.01f;
-            yield return new WaitForSeconds(0.01f);
-            image.color = new Color(0, 0, 0, fadecount);
-        }
-    }
+    //     while (fadecount < 1.0f)
+    //     {
+    //         fadecount += 0.01f;
+    //         yield return new WaitForSeconds(0.01f);
+    //         image.color = new Color(0, 0, 0, fadecount);
+    //     }
+    // }
 }
