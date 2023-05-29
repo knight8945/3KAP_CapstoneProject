@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public PlayerController playerController;
+    public GameObject mom;
     public TalkManager talkManager;
     public QuestManager questManager;
     public QuizManager quizManager;
@@ -38,10 +39,11 @@ public class GameManager : MonoBehaviour
     public int count = 0;
     public int wolfquest = 0;
     public int change = 0;
+    
     private void Start()
     {
         //Debug.Log(questManager.CheckQuest());
-        DontDestroyOnLoad(gameObject);
+      
     }
     public void Action(GameObject scanObj)
     {
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
             countGrape = 0;
             self = 1;
         }
+
         if (next)
         {
             next = false;

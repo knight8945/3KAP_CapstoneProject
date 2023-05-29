@@ -20,8 +20,9 @@ public class SceneChanger : MonoBehaviour
     {
         if (Player.GetComponent<PlayerController>().indicater == 1)
         {
+            PlayerPrefs.SetInt("Data", 1080);
             SceneManager.LoadScene("start");
-            StartCoroutine("FadeCoroutine", 2.0f);
+ 
         }
         if(Player.GetComponent<PlayerController>().indicater == 2)
         {
