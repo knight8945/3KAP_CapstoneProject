@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 public class SceneChanger : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject MainCamera;
     public Image image;
     // Start is called before the first frame update
     void Start()
@@ -18,13 +20,18 @@ public class SceneChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<PlayerController>().indicater == 1)
+
+    }
+
+    public void ChangeScene(int indicater)
+    {
+        if (indicater == 1)
         {
             PlayerPrefs.SetInt("Data", 1080);
-            SceneManager.LoadScene("start");
- 
+            SceneManager.LoadScene("start", LoadSceneMode.Additive);
         }
-        if(Player.GetComponent<PlayerController>().indicater == 2)
+
+        if (indicater == 2)
         {
             SceneManager.LoadScene("ending");
         }

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Vector3 lookDirection;
     public GameObject Player;
     public GameObject Player2;
+    public GameObject SceneChanger;
     public GameObject wolf2;
     public GameObject wolf3;
     public GameObject Player3;
@@ -20,7 +21,6 @@ public class PlayerController : MonoBehaviour
     public Transform playerTransform;
     public Transform cameraTransform;
     public string target;
-    public int indicater = 0;
     GameObject scanObject;
     enum States
     {
@@ -53,15 +53,16 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "ChangeScene")
-            indicater = 1;
+            SceneChanger.GetComponent< SceneChanger> ().ChangeScene(1);
+
         if (collision.transform.tag == "ChangeEnding")
-            indicater = 2;
+            SceneChanger.GetComponent<SceneChanger>().ChangeScene(2);
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        indicater = 0;
+        
     }
     void Update()
     {
