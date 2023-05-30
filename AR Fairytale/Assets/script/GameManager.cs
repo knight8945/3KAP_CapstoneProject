@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     public GameObject wolf_0;
     public GameObject wolf3;
     public GameObject box;
+    public GameObject menuSet;
     public Image portraitImg;
     public TextMeshProUGUI talkText;
     public TextMeshProUGUI quizText;
     public GameObject scanObject;
+    public GameObject PlayerChanger;
     public bool isAction;
     public int talkIndex = 0;
     public bool next = false;
@@ -39,11 +41,49 @@ public class GameManager : MonoBehaviour
     public int count = 0;
     public int wolfquest = 0;
     public int change = 0;
-    
+    public int savePoint = 0;
     private void Start()
     {
         //Debug.Log(questManager.CheckQuest());
+        GameLoad();
+
       
+    }
+    private void Update()
+    {
+        //Sub Menu
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (menuSet.activeSelf)
+                menuSet.SetActive(false);
+            else
+                menuSet.SetActive(true);
+        }
+    
+    }
+    public void GameSave()
+    {
+        PlayerPrefs.SetFloat("PlayerX", PlayerChanger.transform.position.x);
+        PlayerPrefs.SetFloat("PlayerY", PlayerChanger.transform.position.y);
+        //PlayerPrefs.SetInt("ObjData", savePoint );
+        PlayerPrefs.Save();
+
+        menuSet.SetActive(false);
+
+    }
+    public void GameLoad()
+    {
+        if (PlayerPrefs.HasKey("PlayerX"))
+            return;
+        float x = PlayerPrefs.GetFloat("PlayerX");
+        float y = PlayerPrefs.GetFloat("PlayerY");
+
+        PlayerChanger.transform.position = new Vector3(x, y, 0);
+         
+    }
+    public void GameExit()
+    {
+        Application.Quit();
     }
     public void Action(GameObject scanObj)
     {
