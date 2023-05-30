@@ -161,6 +161,9 @@ public class GameManager : MonoBehaviour
                 countGrape = 1;
                 next = false;
                 break;
+            case 800:
+                next = false;
+                break;
             case 1000:
             case 1010:
             case 1020:
@@ -199,6 +202,9 @@ public class GameManager : MonoBehaviour
             case 2010:
             case 2015:
                 next = true;
+                break;
+            case 2020:
+                next = false;
                 break;
             case 20120:
                 tree.SetActive(false);

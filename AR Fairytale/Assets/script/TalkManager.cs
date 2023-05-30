@@ -153,6 +153,7 @@ public class TalkManager : MonoBehaviour
         talkData.Add(700, new string[] { "오른쪽에 있는 통나무에 가보자!" });
         talkData.Add(710, new string[] { "할머니집에 가보자" });
         talkData.Add(720, new string[] { "물가 옆에 있는 꽃밭으로 가보자!" });
+        talkData.Add(800, new string[] { "내가 본 털은 검은색이였던 같아.." });
         //portraitData.Add(1000 + 0, portraitArr[0]); //일반표정
         //portraitData.Add(1000 + 1, portraitArr[1]); //기쁜표정
         //portraitData.Add(1000 + 2, portraitArr[2]); //걱정표정
