@@ -32,6 +32,7 @@ public class QuizManager : MonoBehaviour
         else
         {
             Debug.Log("fail");
+            gamemanager.portraitImg.sprite = talkmanager.GetPortrait(1115 , 0);
             gamemanager.quizText.text = "엄마가 무슨 꽃을 가져달라고 했었지?\n\n\n";
         }
     }

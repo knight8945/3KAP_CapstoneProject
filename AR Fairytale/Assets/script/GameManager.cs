@@ -41,23 +41,30 @@ public class GameManager : MonoBehaviour
     public int count = 0;
     public int wolfquest = 0;
     public int change = 0;
-    public int savePoint = 0;
     private void Start()
     {
         //Debug.Log(questManager.CheckQuest());
         GameLoad();
 
-      
     }
-    private void Update()
+
+    public void SubMenuActive()
     {
-        //Sub Menu
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuSet.activeSelf)
                 menuSet.SetActive(false);
             else
                 menuSet.SetActive(true);
+        }
+    }
+    private void Update()
+    {
+        //Sub Menu
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (Input.GetButtonDown("Cancel"))
+                SubMenuActive();
         }
     
     }

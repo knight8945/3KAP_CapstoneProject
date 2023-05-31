@@ -45,7 +45,7 @@ public class TalkManager : MonoBehaviour
         talkData.Add(1100, new string[] { "한눈팔지 말고 늦기 전에 다녀와야 된단다.", "또 모르는 사람과 이야기하면 안 돼!", "네 엄마. 다녀올게요!" });
         talkData.Add(1110, new string[] { "늦지 않게 서두르렴", "파란색 꽃을 가져가는 것도 잊지 말고!" });
         // 문앞 미니 퀴즈
-        talkData.Add(1115, new string[] { "엄마가 찾아가라고 한 꽃이 무슨 색이었지?" });
+        talkData.Add(1115, new string[] { "엄마가 찾아가라고 한 꽃이 무슨 색이었지?:0" });
 
         
         //마을 사냥꾼과의 대화
@@ -77,13 +77,11 @@ public class TalkManager : MonoBehaviour
 
         // 꽃밭 
         talkData.Add(20170, new string[] { "엄마가 할머니께 드릴 꽃을 가져가라고 하셨지. 무슨 색이었더라?" });
-        talkData.Add(20180, new string[] { "꽃을 가져가야 해." });
+        talkData.Add(20180, new string[] { "어떤 꽃을 가져가야 했지..." });
 
         //AR 이벤트 #3
-         //실패
-        talkData.Add(20185, new string[] { "윽! 이 꽃은 냄새가 너무 이상해 잘못 골랐나 봐." });
          //성공
-        talkData.Add(20190, new string[] { "이 꽃은 향기가 너무 좋다. 할머니도 좋아하실 거야.", "다시 길을 나서려던 빨간 망토는 알록달록한 꽃들과 \n날아다니는 나비들을 발견했어요.", " 빨간 망토는 그것들이 너무나 예뻐 보였답니다.", "조금만 구경하고 가도 괜찮겠지?" });
+        talkData.Add(20190, new string[] { "이 꽃은 향기가 너무 좋다. 할머니도 좋아하실 거야.", "다시 길을 나서려던 빨간 망토는 알록달록한 꽃들과 날아다니는 나비들을 발견했어요.", " 빨간 망토는 그것들이 너무나 예뻐 보였답니다.", "조금만 구경하고 가도 괜찮겠지?" });
         //암전
 
         //4. 오두막 앞
@@ -158,6 +156,7 @@ public class TalkManager : MonoBehaviour
         //portraitData.Add(1000 + 1, portraitArr[1]); //기쁜표정
         //portraitData.Add(1000 + 2, portraitArr[2]); //걱정표정
         //portraitData.Add(1000 + 3, portraitArr[3]); //표정
+        portraitData.Add(1115 + 0, portraitArr[0]);
         portraitData.Add(2000 + 0, portraitArr[0]); //일반표정
         portraitData.Add(2000 + 1, portraitArr[1]); //기쁜표정
         portraitData.Add(2000 + 2, portraitArr[2]); //걱정표정

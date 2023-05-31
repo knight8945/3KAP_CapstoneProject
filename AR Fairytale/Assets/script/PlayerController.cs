@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 15f;
@@ -22,6 +22,17 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;
     public string target;
     GameObject scanObject;
+
+    //Mobile Key Set
+    int up_Value;
+    int down_Value;
+    int left_Value;
+    int right_Value;
+    bool up_Down;
+    bool down_Down;
+    bool left_Down;
+    bool right_Down;
+
     enum States
     {
         right = 1,
@@ -57,12 +68,66 @@ public class PlayerController : MonoBehaviour
 
         if (collision.transform.tag == "ChangeEnding")
             SceneChanger.GetComponent<SceneChanger>().ChangeScene(2);
+        if (collision.transform.tag == "ChangeTree")
+            SceneChanger.GetComponent<SceneChanger>().ChangeScene(4);
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         
+    }
+
+    public void ButtonDown(string type)
+    {
+        switch (type)
+        {
+            case "U":
+                up_Value = 1;
+                up_Down = true;
+                break;
+            case "D":
+                down_Value = -1;
+                down_Down = true;
+                break;
+            case "L":
+                left_Value = -1;
+                left_Down = true;
+                break;
+            case "R":
+                right_Value = 1;
+                right_Down = true;
+                break;
+            case "A":
+                if (scanObject != null)
+                    manager.Action(scanObject);
+                break;
+            case "C":
+                manager.SubMenuActive();
+                break;
+        }
+    }
+    
+    public void ButtonUp(string type)
+    {
+        switch (type)
+        {
+            case "U":
+                up_Value = 0;
+                up_Down = false;
+                break;
+            case "D":
+                down_Value = 0;
+                down_Down = false;
+                break;
+            case "L":
+                left_Value = 0;
+                left_Down = false;
+                break;
+            case "R":
+                right_Value = 0;
+                right_Down = false;
+                break;
+        }
     }
     void Update()
     {
@@ -156,33 +221,46 @@ public class PlayerController : MonoBehaviour
         }
 
         // 캐릭터 이동 제어 스크립트(화면으로 보았을때)
-        if (manager.isAction ? false : Input.GetKey(KeyCode.LeftArrow)) //좌측 이동
+        if (manager.isAction ? false : Input.GetKey(KeyCode.LeftArrow) || left_Down) //좌측 이동
         {
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
+            if(!left_Down)
+                transform.Translate(-speed * Time.deltaTime+ left_Value, 0, 0);
+            else
+                transform.Translate((-speed * Time.deltaTime + left_Value) / 5, 0, 0);
             animator.SetInteger(animationState, (int)States.left);
             if (manager.playerswitch == 1)
                 animator.SetInteger(animationState, (int)States.hunter_left);
             lookDirection = Vector3.left;
         }
-        else if (manager.isAction ? false : Input.GetKey(KeyCode.RightArrow)) //우측 이동
+        else if (manager.isAction ? false : Input.GetKey(KeyCode.RightArrow) || right_Down) //우측 이동
         {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
+            if(!right_Down)
+                transform.Translate(speed * Time.deltaTime + right_Value, 0, 0);
+            else
+                transform.Translate((speed * Time.deltaTime + right_Value) / 5, 0, 0);
             animator.SetInteger(animationState, (int)States.right);
             if (manager.playerswitch == 1)
                 animator.SetInteger(animationState, (int)States.hunter_right);
             lookDirection = Vector3.right;
         }
-        else if (manager.isAction ? false : Input.GetKey(KeyCode.UpArrow)) //위측 이동
+        else if (manager.isAction ? false : Input.GetKey(KeyCode.UpArrow) || up_Down)//위측 이동
         {
-            transform.Translate(0, speed * Time.deltaTime,0);
+            if(!up_Down)
+                transform.Translate(0, speed * Time.deltaTime + up_Value,0);
+            else
+                transform.Translate(0, (speed * Time.deltaTime + up_Value) / 5, 0);
             animator.SetInteger(animationState, (int)States.front);
             if (manager.playerswitch == 1)
                 animator.SetInteger(animationState, (int)States.hunter_front);
             lookDirection = Vector3.back;
         }
-        else if (manager.isAction ? false : Input.GetKey(KeyCode.DownArrow)) //아래측 이동
+        
+        else if (manager.isAction ? false : Input.GetKey(KeyCode.DownArrow) || down_Down) //아래측 이동
         {
-            transform.Translate(0, -speed * Time.deltaTime,0);
+            if(!down_Down)
+                transform.Translate(0, -speed * Time.deltaTime + down_Value, 0);
+            else
+                transform.Translate(0, (-speed * Time.deltaTime + down_Value) / 5, 0);
             animator.SetInteger(animationState, (int)States.behind);
             if (manager.playerswitch == 1)
                 animator.SetInteger(animationState, (int)States.hunter_behind);
@@ -237,7 +315,7 @@ public class PlayerController : MonoBehaviour
 
         }
         // 퀘스트 받았을 때 퀘스트 밀맵으로 이동
-        else if (playerTransform.position.x > 14 && playerTransform.position.x < 16 && playerTransform.position.y > 1.5 && playerTransform.position.y < 2.5 && manager.questCheck == true )
+        else if (playerTransform.position.x > 14 && playerTransform.position.x < 16 && playerTransform.position.y > 1.5 && playerTransform.position.y < 2.5 && manager.questCheck == true && manager.countMeal != 1)
         {
             playerTransform.position = new Vector3(37, 19f, 0);
             cameraTransform.position = new Vector3(37, 21, -1);
@@ -275,7 +353,7 @@ public class PlayerController : MonoBehaviour
             cameraTransform.position = new Vector3(3f, -20, -1);
         }
         // 플레이어 flower -> shack 이동
-        else if(playerTransform.position.x > 38 && playerTransform.position.x < 39 && playerTransform.position.y > -21 && playerTransform.position.y < -20 && manager.wolfswitch == 0)
+        else if(playerTransform.position.x > 37 && playerTransform.position.x < 40 && playerTransform.position.y > -22 && playerTransform.position.y < -18 && manager.wolfswitch == 0)
         {
             manager.count = 1;
             playerTransform.position = new Vector3(54f, -22f, 0);
@@ -346,8 +424,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
             manager.Action(scanObject);
 
-
-
+        //Movile Key Value false
+        
 
 
     }
