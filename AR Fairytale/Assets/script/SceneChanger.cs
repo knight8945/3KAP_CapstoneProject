@@ -28,12 +28,12 @@ public class SceneChanger : MonoBehaviour
         if (indicater == 1)
         {
             PlayerPrefs.SetInt("Data", 1080);
-            SceneManager.LoadScene("start", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("start", LoadSceneMode.Additive);
         }
 
         if (indicater == 2)
         {
-            SceneManager.LoadScene("ending");
+            SceneManager.LoadSceneAsync("ending");
         }
     }
   

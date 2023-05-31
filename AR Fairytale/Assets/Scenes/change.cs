@@ -13,7 +13,7 @@ public class change : MonoBehaviour
     }
     public void LoadScene()
     {
-        SceneManager.UnloadScene("start");
+        SceneManager.UnloadSceneAsync("start");
         //EditorSceneManager.CloseScene(SceneManager.GetSceneByName("start"), true);
     }
 }
