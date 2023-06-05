@@ -60,19 +60,25 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        //Sub Menu
         if (Input.GetButtonDown("Cancel"))
         {
-            if (Input.GetButtonDown("Cancel"))
-                SubMenuActive();
+            if (menuSet.activeSelf)
+                menuSet.SetActive(false);
+            else
+                menuSet.SetActive(true);
         }
-    
+
     }
     public void GameSave()
     {
         PlayerPrefs.SetFloat("PlayerX", PlayerChanger.transform.position.x);
         PlayerPrefs.SetFloat("PlayerY", PlayerChanger.transform.position.y);
-        //PlayerPrefs.SetInt("ObjData", savePoint );
+        if(playerswitch == 1)
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetFloat("PlayerX", PlayerChanger.transform.position.x);
+            PlayerPrefs.SetFloat("PlayerY", PlayerChanger.transform.position.y);
+        }
         PlayerPrefs.Save();
 
         menuSet.SetActive(false);
@@ -112,7 +118,7 @@ public class GameManager : MonoBehaviour
         if (next)
         {
             next = false;
-            if (objData.id == 1110 || objData.id == 20110 || objData.id == 20180)
+            if (objData.id == 1110 || objData.id == 20110)
             {
                 if(objData.id == 20110)
                 {
@@ -120,13 +126,6 @@ public class GameManager : MonoBehaviour
                         objData.id = 20115;
                     else
                         objData.id = 20120;
-                }
-                if(objData.id == 20180)
-                {
-                    if (ARCountFlower == 0)
-                        objData.id = 20185;
-                    else
-                        objData.id = 20190;
                 }
 
             }
@@ -211,24 +210,9 @@ public class GameManager : MonoBehaviour
             case 800:
                 next = false;
                 break;
-            case 1000:
-            case 1010:
-            case 1020:
-            case 1025:
-            case 1030:
-            case 1040:
-            case 1050:
-            case 1070:
-                next = true;
-                break;
             case 1080:
                 next = true;
                 box.SetActive(true);
-                break;
-            case 1090:
-            case 1100:
-            case 1110:
-                next = true;
                 break;
             case 1060:
                 Debug.Log(questManager.CheckQuest());
@@ -246,10 +230,6 @@ public class GameManager : MonoBehaviour
                 else 
                     next = false;
                 break;
-            case 2010:
-            case 2015:
-                next = true;
-                break;
             case 2020:
                 next = false;
                 break;
@@ -266,11 +246,21 @@ public class GameManager : MonoBehaviour
                 wolfswitch = 1;
                 wolf.SetActive(true);
                 break;
+            case 20200:
+                isAction = true;
+                next = true;
+                break;
+            case 20220:
+                next = true;
+                playerController.scanObject = null;
+                scanObject = null;
+                break;
             case 20230:
                 next = true;
                 wolfswitch = 2;
                 wolf.SetActive(false);
                 count = 2;
+                isAction = false;
                 break;
             case 20240:
                 next = true;
@@ -282,9 +272,6 @@ public class GameManager : MonoBehaviour
                 wolf.transform.position = new Vector3(56f, -20f, 0);
                 count = 7;
                 playerswitch = 1;
-                break;
-            case 2050:
-                next = true;
                 break;
             case 2060:
                 wolfquest = 1;

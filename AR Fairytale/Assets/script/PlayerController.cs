@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 15f;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public Transform playerTransform;
     public Transform cameraTransform;
     public string target;
-    GameObject scanObject;
+    public GameObject scanObject;
 
     //Mobile Key Set
     int up_Value;
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -98,8 +98,14 @@ public class PlayerController : MonoBehaviour
                 right_Down = true;
                 break;
             case "A":
-                if (scanObject != null)
-                    manager.Action(scanObject);
+                if(manager.playerswitch == 0)
+                    if (scanObject != null)
+                        manager.Action(scanObject);
+                break;
+            case "B":
+                if(manager.playerswitch == 1)
+                    if (scanObject != null)
+                        manager.Action(scanObject);
                 break;
             case "C":
                 manager.SubMenuActive();
@@ -174,7 +180,6 @@ public class PlayerController : MonoBehaviour
             manager.wolf.SetActive(false);
             manager.wolf_0.SetActive(true);
             manager.talkText.text = "늑대의 발자국을 쫒아가보자!";
-            //Invoke("CountUp", 2.0f);
             playerTransform.position = new Vector3(60, -38, 0);
             cameraTransform.position = new Vector3(60, -38, -1);
             manager.count = 9;
@@ -203,7 +208,7 @@ public class PlayerController : MonoBehaviour
             manager.talkPanel.SetActive(false);
             playerTransform.position = new Vector3(60, -38, 0);
             cameraTransform.position = new Vector3(60, -38, -1);
-            Invoke("CountDown", 2.0f);
+            manager.count = 10; 
         }
         if(manager.wolfquest == 7 && manager.count != 12)
         {
@@ -217,7 +222,6 @@ public class PlayerController : MonoBehaviour
             playerTransform.position = new Vector3(63f, -22f, 0);
             cameraTransform.position = new Vector3(60, -20, -1);
             Invoke("CountDraw", 3.0f);
-            //manager.wolfquest =7 and manager.count = 10
         }
 
         // 캐릭터 이동 제어 스크립트(화면으로 보았을때)
@@ -226,7 +230,7 @@ public class PlayerController : MonoBehaviour
             if(!left_Down)
                 transform.Translate(-speed * Time.deltaTime+ left_Value, 0, 0);
             else
-                transform.Translate((-speed * Time.deltaTime + left_Value) / 5, 0, 0);
+                transform.Translate((-speed * Time.deltaTime + left_Value) /5, 0, 0);
             animator.SetInteger(animationState, (int)States.left);
             if (manager.playerswitch == 1)
                 animator.SetInteger(animationState, (int)States.hunter_left);
@@ -396,7 +400,7 @@ public class PlayerController : MonoBehaviour
             cameraTransform.position = new Vector3(73, 0, -1);
         }
         // 플레이어 할머니집 -> shack 이동
-        else if (playerTransform.position.x > 66 && playerTransform.position.x < 67 && playerTransform.position.y > -4.5 && playerTransform.position.y < -4)
+        else if (playerTransform.position.x > 66 && playerTransform.position.x < 67 && playerTransform.position.y > -4.5 && playerTransform.position.y < -4 && manager.wolfquest != 4)
         {
             playerTransform.position = new Vector3(65, -20.5f, 0);
             cameraTransform.position = new Vector3(60, -20, -1);
@@ -407,7 +411,7 @@ public class PlayerController : MonoBehaviour
         {
              incameraCharacter();
         }
-       if(manager.wolfquest == 5)
+       if  (manager.wolfquest == 5)
         {
             RealGM.SetActive(true);
             Player3.SetActive(true);

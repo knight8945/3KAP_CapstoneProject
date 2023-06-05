@@ -712,7 +712,9 @@ extern void U3CWarpTextU3Ed__8_System_Collections_Generic_IEnumeratorU3CSystem_O
 extern void U3CWarpTextU3Ed__8_System_Collections_IEnumerator_Reset_m07746C332D2D8CE5DEA59873C26F2FAD4B369B42 (void);
 // 0x0000015E System.Object TMPro.Examples.WarpTextExample/<WarpText>d__8::System.Collections.IEnumerator.get_Current()
 extern void U3CWarpTextU3Ed__8_System_Collections_IEnumerator_get_Current_m71D7F84D9DEF63BEC6B44866515DDCF35B142A19 (void);
-static Il2CppMethodPointer s_methodPointers[350] = 
+// 0x0000015F System.UInt32 <PrivateImplementationDetails>::ComputeStringHash(System.String)
+extern void U3CPrivateImplementationDetailsU3E_ComputeStringHash_m9E43873DE0DF480D27EC1C2AA3C09E74EA77F75D (void);
+static Il2CppMethodPointer s_methodPointers[351] = 
 {
 	change_Awake_mD6C18136CC5E4AF77B15C9761F4B6B0E39C334BC,
 	change_LoadScene_mC52805EDD49332BB04999B8DB9E3CD6E7690D97C,
@@ -1064,8 +1066,9 @@ static Il2CppMethodPointer s_methodPointers[350] =
 	U3CWarpTextU3Ed__8_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mD80368E9B7E259311C03E406B75161ED6F7618E3,
 	U3CWarpTextU3Ed__8_System_Collections_IEnumerator_Reset_m07746C332D2D8CE5DEA59873C26F2FAD4B369B42,
 	U3CWarpTextU3Ed__8_System_Collections_IEnumerator_get_Current_m71D7F84D9DEF63BEC6B44866515DDCF35B142A19,
+	U3CPrivateImplementationDetailsU3E_ComputeStringHash_m9E43873DE0DF480D27EC1C2AA3C09E74EA77F75D,
 };
-static const int32_t s_InvokerIndices[350] = 
+static const int32_t s_InvokerIndices[351] = 
 {
 	6455,
 	6455,
@@ -1417,12 +1420,13 @@ static const int32_t s_InvokerIndices[350] =
 	6336,
 	6455,
 	6336,
+	9637,
 };
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	350,
+	351,
 	s_methodPointers,
 	0,
 	NULL,
