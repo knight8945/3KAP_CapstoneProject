@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.transform.tag == "ChangeEnding")
             SceneChanger.GetComponent<SceneChanger>().ChangeScene(2);
+
         if (collision.transform.tag == "ChangeTree")
             SceneChanger.GetComponent<SceneChanger>().ChangeScene(4);
     }
