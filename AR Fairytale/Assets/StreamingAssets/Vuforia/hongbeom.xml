@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
-    <ImageTarget name="introSceneSmall" size="1.000000 0.609375" />
+    <ImageTarget name="4_food" size="1.000000 0.803125" />
+    <ImageTarget name="2_flower" size="2.000000 1.500000" />
+    <ImageTarget name="6_Endingsmall" size="2.000000 2.461539" />
+    <ImageTarget name="5_wolfFallsmall" size="1.000000 0.800000" />
+    <ImageTarget name="1_introsmall" size="1.000000 0.700000" />
+    <ImageTarget name="3_wood_clean" size="1.000000 0.500000" />
   </Tracking>
 </QCARConfig>
