@@ -9012,7 +9012,7 @@ MonoBehaviour:
   quizmanager: {fileID: 0}
   Player: {fileID: 957450105}
   Player2: {fileID: 113761996}
-  SceneChanger: {fileID: 0}
+  SceneChanger: {fileID: 24323005}
   wolf2: {fileID: 1717744839}
   wolf3: {fileID: 2116352713}
   Player3: {fileID: 1922742128}
