@@ -6,470 +6,422 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 15f;
-    Animator animator;
-    string animationState = "AnimationState";
-    public GameManager manager;
-    public QuizManager quizmanager;
-    Vector3 lookDirection;
-    public GameObject Player;
-    public GameObject Player2;
-    public GameObject SceneChanger;
-    public GameObject wolf2;
-    public GameObject wolf3;
-    public GameObject Player3;
-    public GameObject RealGM;
-    public Transform playerTransform;
-    public Transform cameraTransform;
-    public string target;
-    public GameObject scanObject;
+	public float speed = 15f;
+	Animator animator;
+	string animationState = "AnimationState";
+	public GameManager manager;
+	public QuizManager quizmanager;
+	Vector3 lookDirection;
+	public GameObject Player;
+	public GameObject Player2;
+	public GameObject SceneChanger;
+	public GameObject wolf2;
+	public GameObject wolf3;
+	public GameObject Player3;
+	public GameObject RealGM;
+	public Transform playerTransform;
+	public Transform cameraTransform;
+	public string target;
+	public GameObject scanObject;
 
-    //Mobile Key Set
-    int up_Value;
-    int down_Value;
-    int left_Value;
-    int right_Value;
-    bool up_Down;
-    bool down_Down;
-    bool left_Down;
-    bool right_Down;
+	//Mobile Key Set
+	int up_Value;
+	int down_Value;
+	int left_Value;
+	int right_Value;
+	bool up_Down;
+	bool down_Down;
+	bool left_Down;
+	bool right_Down;
 
-    enum States
-    {
-        right = 1,
-        left = 2,
-        behind = 3,
-        front = 4,
-        idle_right = 5,
-        idle_left = 6,
-        idle_behind = 7,
-        idle_front = 8,
+	enum States
+	{
+		right = 1,
+		left = 2,
+		behind = 3,
+		front = 4,
+		idle_right = 5,
+		idle_left = 6,
+		idle_behind = 7,
+		idle_front = 8,
 
-        hunter_right = 11,
-        hunter_left = 12,
-        hunter_behind = 13,
-        hunter_front = 14,
-        hunter_idle_right = 15,
-        hunter_idle_left = 16,
-        hunter_idle_behind = 17,
-        hunter_idle_front = 18
-    }
+		hunter_right = 11,
+		hunter_left = 12,
+		hunter_behind = 13,
+		hunter_front = 14,
+		hunter_idle_right = 15,
+		hunter_idle_left = 16,
+		hunter_idle_behind = 17,
+		hunter_idle_front = 18
+	}
 
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+	private void Start()
+	{
+		animator = GetComponent<Animator>();
+		playerTransform = GameObject.Find("Player").GetComponent<Transform>();
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "ChangeScene")
-            SceneChanger.GetComponent< SceneChanger> ().ChangeScene(1);
+	}
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.transform.tag == "ChangeScene")
+			SceneChanger.GetComponent<SceneChanger>().ChangeScene(1);
 
-        if (collision.transform.tag == "ChangeEnding")
-            SceneChanger.GetComponent<SceneChanger>().ChangeScene(2);
-        if (collision.transform.tag == "ChangeTree")
-            SceneChanger.GetComponent<SceneChanger>().ChangeScene(4);
-    }
+		if (collision.transform.tag == "ChangeEnding")
+			SceneChanger.GetComponent<SceneChanger>().ChangeScene(2);
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
+		if (collision.transform.tag == "ChangeTree")
+			SceneChanger.GetComponent<SceneChanger>().ChangeScene(4);
+	}
 
-    public void ButtonDown(string type)
-    {
-        switch (type)
-        {
-            case "U":
-                up_Value = 1;
-                up_Down = true;
-                break;
-            case "D":
-                down_Value = -1;
-                down_Down = true;
-                break;
-            case "L":
-                left_Value = -1;
-                left_Down = true;
-                break;
-            case "R":
-                right_Value = 1;
-                right_Down = true;
-                break;
-            case "A":
-                if(manager.playerswitch == 0)
-                    if (scanObject != null)
-                        manager.Action(scanObject);
-                break;
-            case "B":
-                if(manager.playerswitch == 1)
-                    if (scanObject != null)
-                        manager.Action(scanObject);
-                break;
-            case "C":
-                manager.SubMenuActive();
-                break;
-        }
-    }
-    
-    public void ButtonUp(string type)
-    {
-        switch (type)
-        {
-            case "U":
-                up_Value = 0;
-                up_Down = false;
-                break;
-            case "D":
-                down_Value = 0;
-                down_Down = false;
-                break;
-            case "L":
-                left_Value = 0;
-                left_Down = false;
-                break;
-            case "R":
-                right_Value = 0;
-                right_Down = false;
-                break;
-        }
-    }
-    void Update()
-    {
+	private void OnTriggerExit2D(Collider2D collision)
+	{
 
-        if (manager.playerswitch == 1)
-        {
-            Player.transform.position = new Vector3(55, -43, 0);
-            Player.SetActive(false);
-            Player2.SetActive(true);
-            playerTransform = GameObject.Find("Player2").GetComponent<Transform>();
-        }
-        if (manager.count == 1)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.talkText.text = "ª°∏Æ «“∏”¥œ¡˝¿∏∑Œ ∞°æﬂ∞⁄æÓ!!";
-            Invoke("CountUp", 2.0f);
-            manager.count = 2;
-        }
-        if (manager.count == 3)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.talkText.text = "«“∏”¥œ? æÓµ ∞Ëººø‰? æ∆! ƒß¥Îø° ∞ËΩ√±∏≥™";
-            Invoke("CountUp", 2.0f);
-            manager.count = 4;
-        }
-        if (manager.playerswitch == 1 && manager.count == 7 && manager.wolfquest == 0)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.wolf.SetActive(false);
-            manager.wolf_0.SetActive(true);
-            manager.talkText.text = "«—∆Ì ªÁ≥…≤€ æ∆¿˙ææ∞° º¯¬˚ ¡ﬂ ¿ÃªÛ«— ∞Õ¿ª πﬂ∞ﬂ«ﬂæÓø‰!";
-            playerTransform.position = new Vector3(54f, -22f, 0);
-            cameraTransform.position = new Vector3(60, -20, -1);
-            Invoke("CountUp", 2.0f);
-            manager.count = 8;
-        }
-        if (manager.wolfquest == 1 && manager.count == 8)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.isAction = true;
-            manager.wolf.SetActive(false);
-            manager.wolf_0.SetActive(true);
-            manager.talkText.text = "¥¡¥Î¿« πﬂ¿⁄±π¿ª ¶iæ∆∞°∫∏¿⁄!";
-            playerTransform.position = new Vector3(60, -38, 0);
-            cameraTransform.position = new Vector3(60, -38, -1);
-            manager.count = 9;
+	}
 
-        }
-        else if(manager.wolfquest == 2 && manager.count == 11)
-        {
-            Player.SetActive(true);
-            Player.transform.position = new Vector3(89, -38, 0);
-            Player.SetActive(false);
-            playerTransform.position = new Vector3(89, -35, 0);
-            cameraTransform.position = new Vector3(88, -38, -1);
-            manager.count = 12;
-           
-        }
-        if (manager.count == 10 && manager.wolfquest != 7)
-        {
-            playerTransform.position = new Vector3(60, -38, 0);
-            cameraTransform.position = new Vector3(60, -38, -1);
-            manager.talkPanel.SetActive(false);
-            manager.isAction = false;
-            manager.count = 11;
-        }
-        else if (manager.wolfquest == 1 && manager.count == 9)
-        {
-            manager.talkPanel.SetActive(false);
-            playerTransform.position = new Vector3(60, -38, 0);
-            cameraTransform.position = new Vector3(60, -38, -1);
-            manager.count = 10; 
-        }
-        if(manager.wolfquest == 7 && manager.count != 12)
-        {
-            manager.talkPanel.SetActive(true);
-            manager.talkText.text = "¿·Ω√ »ƒ ¿·ø°º≠ ±¸ ¥¡¥Î∞° ø¿µŒ∏∑ π€¿∏∑Œ ≥™ø‘æÓø‰.";
-            Invoke("CountDown", 3.0f);
-            manager.wolf_0.SetActive(false);
-            Player.SetActive(true);
-            Player.transform.position = new Vector3(60, -25, 0);
-            Player.SetActive(false);
-            playerTransform.position = new Vector3(63f, -22f, 0);
-            cameraTransform.position = new Vector3(60, -20, -1);
-            Invoke("CountDraw", 3.0f);
-        }
+	public void ButtonDown(string type)
+	{
+		switch (type) {
+			case "U":
+				up_Value = 1;
+				up_Down = true;
+				break;
+			case "D":
+				down_Value = -1;
+				down_Down = true;
+				break;
+			case "L":
+				left_Value = -1;
+				left_Down = true;
+				break;
+			case "R":
+				right_Value = 1;
+				right_Down = true;
+				break;
+			case "A":
+				if (manager.playerswitch == 0)
+					if (scanObject != null)
+						manager.Action(scanObject);
+				break;
+			case "B":
+				if (manager.playerswitch == 1)
+					if (scanObject != null)
+						manager.Action(scanObject);
+				break;
+			case "C":
+				manager.SubMenuActive();
+				break;
+		}
+	}
 
-        // ƒ≥∏Ø≈Õ ¿Ãµø ¡¶æÓ Ω∫≈©∏≥∆Æ(»≠∏È¿∏∑Œ ∫∏æ“¿ª∂ß)
-        if (manager.isAction ? false : Input.GetKey(KeyCode.LeftArrow) || left_Down) //¡¬√¯ ¿Ãµø
-        {
-            if(!left_Down)
-                transform.Translate(-speed * Time.deltaTime+ left_Value, 0, 0);
-            else
-                transform.Translate((-speed * Time.deltaTime + left_Value) /5, 0, 0);
-            animator.SetInteger(animationState, (int)States.left);
-            if (manager.playerswitch == 1)
-                animator.SetInteger(animationState, (int)States.hunter_left);
-            lookDirection = Vector3.left;
-        }
-        else if (manager.isAction ? false : Input.GetKey(KeyCode.RightArrow) || right_Down) //øÏ√¯ ¿Ãµø
-        {
-            if(!right_Down)
-                transform.Translate(speed * Time.deltaTime + right_Value, 0, 0);
-            else
-                transform.Translate((speed * Time.deltaTime + right_Value) / 5, 0, 0);
-            animator.SetInteger(animationState, (int)States.right);
-            if (manager.playerswitch == 1)
-                animator.SetInteger(animationState, (int)States.hunter_right);
-            lookDirection = Vector3.right;
-        }
-        else if (manager.isAction ? false : Input.GetKey(KeyCode.UpArrow) || up_Down)//¿ß√¯ ¿Ãµø
-        {
-            if(!up_Down)
-                transform.Translate(0, speed * Time.deltaTime + up_Value,0);
-            else
-                transform.Translate(0, (speed * Time.deltaTime + up_Value) / 5, 0);
-            animator.SetInteger(animationState, (int)States.front);
-            if (manager.playerswitch == 1)
-                animator.SetInteger(animationState, (int)States.hunter_front);
-            lookDirection = Vector3.back;
-        }
-        
-        else if (manager.isAction ? false : Input.GetKey(KeyCode.DownArrow) || down_Down) //æ∆∑°√¯ ¿Ãµø
-        {
-            if(!down_Down)
-                transform.Translate(0, -speed * Time.deltaTime + down_Value, 0);
-            else
-                transform.Translate(0, (-speed * Time.deltaTime + down_Value) / 5, 0);
-            animator.SetInteger(animationState, (int)States.behind);
-            if (manager.playerswitch == 1)
-                animator.SetInteger(animationState, (int)States.hunter_behind);
-            lookDirection = Vector3.forward;
-        }
-        // ƒ≥∏Ø≈Õ idle ªÛ≈¬
-        else //¡§¡ˆ ªÛ≈¬
-        {
-            if (lookDirection ==  Vector3.right)
-            {
-                animator.SetInteger(animationState, (int)States.idle_right);
-                if (manager.playerswitch == 1)
-                    animator.SetInteger(animationState, (int)States.hunter_idle_right);
-            }
-            else if(lookDirection == Vector3.left)
-            {
-                animator.SetInteger(animationState, (int)States.idle_left);
-                if (manager.playerswitch == 1)
-                    animator.SetInteger(animationState, (int)States.hunter_idle_left);
-            }
-            else if (lookDirection == Vector3.back)
-            {
-                animator.SetInteger(animationState, (int)States.idle_front);
-                if (manager.playerswitch == 1)
-                    animator.SetInteger(animationState, (int)States.hunter_idle_front);
-            }
-            else if (lookDirection == Vector3.forward)
-            {
-                animator.SetInteger(animationState, (int)States.idle_behind);
-                if (manager.playerswitch == 1)
-                    animator.SetInteger(animationState, (int)States.hunter_idle_behind);
-            }
-        }
+	public void ButtonUp(string type)
+	{
+		switch (type) {
+			case "U":
+				up_Value = 0;
+				up_Down = false;
+				break;
+			case "D":
+				down_Value = 0;
+				down_Down = false;
+				break;
+			case "L":
+				left_Value = 0;
+				left_Down = false;
+				break;
+			case "R":
+				right_Value = 0;
+				right_Down = false;
+				break;
+		}
+	}
+	void Update()
+	{
 
-        // main -> ª°∞£∏¿⁄ ¡˝ ¿Ãµø
-        if (playerTransform.position.x > -9.5 && playerTransform.position.x < -8.5 && playerTransform.position.y > 2 && playerTransform.position.y < 3)
-        {
-            playerTransform.position = new Vector3(-6, 15, 0);
-            cameraTransform.position = new Vector3(0f, 20, -1);
+		if (manager.playerswitch == 1) {
+			Player.transform.position = new Vector3(55, -43, 0);
+			Player.SetActive(false);
+			Player2.SetActive(true);
+			playerTransform = GameObject.Find("Player2").GetComponent<Transform>();
+		}
+		if (manager.count == 1) {
+			manager.talkPanel.SetActive(true);
+			manager.isAction = true;
+			manager.talkText.text = "Îπ®Î¶¨ Ìï†Î®∏ÎãàÏßëÏúºÎ°ú Í∞ÄÏïºÍ≤†Ïñ¥!!";
+			Invoke("CountUp", 2.0f);
+			manager.count = 2;
+		}
+		if (manager.count == 3) {
+			manager.talkPanel.SetActive(true);
+			manager.isAction = true;
+			manager.talkText.text = "Ìï†Î®∏Îãà? Ïñ¥Îîî Í≥ÑÏÑ∏Ïöî? ÏïÑ! Ïπ®ÎåÄÏóê Í≥ÑÏãúÍµ¨ÎÇò";
+			Invoke("CountUp", 2.0f);
+			manager.count = 4;
+		}
+		if (manager.playerswitch == 1 && manager.count == 7 && manager.wolfquest == 0) {
+			manager.talkPanel.SetActive(true);
+			manager.isAction = true;
+			manager.wolf.SetActive(false);
+			manager.wolf_0.SetActive(true);
+			manager.talkText.text = "ÌïúÌé∏ ÏÇ¨ÎÉ•Íæº ÏïÑÏ†ÄÏî®Í∞Ä ÏàúÏ∞∞ Ï§ë Ïù¥ÏÉÅÌïú Í≤ÉÏùÑ Î∞úÍ≤¨ÌñàÏñ¥Ïöî!";
+			playerTransform.position = new Vector3(54f, -22f, 0);
+			cameraTransform.position = new Vector3(60, -20, -1);
+			Invoke("CountUp", 2.0f);
+			manager.count = 8;
+		}
+		if (manager.wolfquest == 1 && manager.count == 8) {
+			manager.talkPanel.SetActive(true);
+			manager.isAction = true;
+			manager.wolf.SetActive(false);
+			manager.wolf_0.SetActive(true);
+			manager.talkText.text = "ÎäëÎåÄÏùò Î∞úÏûêÍµ≠ÏùÑ Ï´íÏïÑÍ∞ÄÎ≥¥Ïûê!";
+			playerTransform.position = new Vector3(60, -38, 0);
+			cameraTransform.position = new Vector3(60, -38, -1);
+			manager.count = 9;
 
-        }
-        // ª°∞£∏¿⁄ ¡˝ -> main ¿Ãµø
-        else if (playerTransform.position.x > -6 && playerTransform.position.x < -5.5 && playerTransform.position.y > 15 && playerTransform.position.y < 15.5)
-        {
-            playerTransform.position = new Vector3(-9f, 0.5f, 0);
-            cameraTransform.position = new Vector3(-4f, 2, -1);
-            if(manager.self == 1)
-            {
-                manager.isAction = true;
-                manager.questPanel.SetActive(true);
-            }
+		} else if (manager.wolfquest == 2 && manager.count == 11) {
+			Player.SetActive(true);
+			Player.transform.position = new Vector3(89, -38, 0);
+			Player.SetActive(false);
+			playerTransform.position = new Vector3(89, -35, 0);
+			cameraTransform.position = new Vector3(88, -38, -1);
+			manager.count = 12;
 
-        }
-        // ƒ˘Ω∫∆Æ πﬁæ“¿ª ∂ß ƒ˘Ω∫∆Æ π–∏ ¿∏∑Œ ¿Ãµø
-        else if (playerTransform.position.x > 14 && playerTransform.position.x < 16 && playerTransform.position.y > 1.5 && playerTransform.position.y < 2.5 && manager.questCheck == true && manager.countMeal != 1)
-        {
-            playerTransform.position = new Vector3(37, 19f, 0);
-            cameraTransform.position = new Vector3(37, 21, -1);
-        }
-        // ƒ˘Ω∫∆Æ øœ∑·Ω√ main ∏ ¿∏∑Œ ¿Ãµø
-        else if (playerTransform.position.x > 30 && playerTransform.position.x < 43 && playerTransform.position.y > 18 && playerTransform.position.y < 25 && manager.countMeal == 1)
-        { 
-            playerTransform.position = new Vector3(15, 0f, 0);
-            cameraTransform.position = new Vector3(6, 6, -1);
-        }
-        //«√∑π¿ÃæÓ main -> forest ¿Ãµø
-        else if (playerTransform.position.x > 2.5 && playerTransform.position.x < 3.5 && playerTransform.position.y == -9 && manager.self == 1)
-        {
-            playerTransform.position = new Vector3(3, -17.5f, 0);
-            cameraTransform.position = new Vector3(3.5f, -20, -1);
-            
-        }
-        //«√∑π¿ÃæÓ forest -> main ¿Ãµø
-        else if (playerTransform.position.x > 2.5 && playerTransform.position.x < 3.5 && playerTransform.position.y > -17 && playerTransform.position.y < -16)
-        {
-            playerTransform.position = new Vector3(3, -8, 0);
-            cameraTransform.position = new Vector3(3.5f, -20, -1);
+		}
+		if (manager.count == 10 && manager.wolfquest != 7) {
+			playerTransform.position = new Vector3(60, -38, 0);
+			cameraTransform.position = new Vector3(60, -38, -1);
+			manager.talkPanel.SetActive(false);
+			manager.isAction = false;
+			manager.count = 11;
+		} else if (manager.wolfquest == 1 && manager.count == 9) {
+			manager.talkPanel.SetActive(false);
+			playerTransform.position = new Vector3(60, -38, 0);
+			cameraTransform.position = new Vector3(60, -38, -1);
+			manager.count = 10;
+		}
+		if (manager.wolfquest == 7 && manager.count != 12) {
+			manager.talkPanel.SetActive(true);
+			manager.talkText.text = "Ïû†Ïãú ÌõÑ Ïû†ÏóêÏÑú Íπ¨ ÎäëÎåÄÍ∞Ä Ïò§ÎëêÎßâ Î∞ñÏúºÎ°ú ÎÇòÏôîÏñ¥Ïöî.";
+			Invoke("CountDown", 3.0f);
+			manager.wolf_0.SetActive(false);
+			Player.SetActive(true);
+			Player.transform.position = new Vector3(60, -25, 0);
+			Player.SetActive(false);
+			playerTransform.position = new Vector3(63f, -22f, 0);
+			cameraTransform.position = new Vector3(60, -20, -1);
+			Invoke("CountDraw", 3.0f);
+		}
 
-        }
-        //«√∑π¿ÃæÓ forest -> flower ¿Ãµø
-        else if(playerTransform.position.x > 10.5 && playerTransform.position.x < 11.5 && playerTransform.position.y > -23 && playerTransform.position.y < -21)
-        {
-            playerTransform.position = new Vector3(23.5f, -22.5f, 0);
-            cameraTransform.position = new Vector3(30, -20, -1);
-        }
-        //«√∑π¿ÃæÓ flower -> forest ¿Ãµø
-        else if (playerTransform.position.x > 21 && playerTransform.position.x < 22.8 && playerTransform.position.y > -23 && playerTransform.position.y < -21)
-        {
-            playerTransform.position = new Vector3(9.7f, -22.5f, 0);
-            cameraTransform.position = new Vector3(3f, -20, -1);
-        }
-        // «√∑π¿ÃæÓ flower -> shack ¿Ãµø
-        else if(playerTransform.position.x > 37 && playerTransform.position.x < 40 && playerTransform.position.y > -22 && playerTransform.position.y < -18 && manager.wolfswitch == 0)
-        {
-            manager.count = 1;
-            playerTransform.position = new Vector3(54f, -22f, 0);
-            cameraTransform.position = new Vector3(60, -20, -1);
-        }
-        if (manager.wolfswitch == 1)
-        {
-            manager.wolf.transform.position = new Vector3(60f, -20f, 0);
-            cameraTransform.position = new Vector3(60, -20, -1);
-        }
-        else if (manager.wolfswitch == 2)
-        {
-            cameraTransform.position = new Vector3(30, -20, -1);
-            manager.wolfswitch = 0;
-        }
-        else if (manager.count == 7)
-        {
-            manager.wolf.transform.position = new Vector3(76, 0, 0);
-        }
-        // «√∑π¿ÃæÓ shack -> flower ¿Ãµø
-        else if (playerTransform.position.x > 51 && playerTransform.position.x < 52 && playerTransform.position.y > -23 && playerTransform.position.y < -21)
-        {
-            playerTransform.position = new Vector3(39.5f, -20.5f, 0);
-            cameraTransform.position = new Vector3(30, -20, -1);
-        }
-        // «√∑π¿Ã shack -> «“∏”¥œ¡˝ ¿Ãµø
-        else if (playerTransform.position.x > 64.5 && playerTransform.position.x < 65.5 && playerTransform.position.y > -20 && playerTransform.position.y < -19 || manager.wolfquest == 3 )
-        {
-            manager.count = 3;
-            if (manager.wolfquest == 3)
-            {
-                Player.SetActive(true);
-                Player.transform.position = new Vector3(67, -3, 0);
-                Player.SetActive(false);
-                manager.count = 13;
-                manager.wolfquest = 4;
-                wolf2.SetActive(true);
-            }
-            playerTransform.position = new Vector3(67, -3, 0);
-            cameraTransform.position = new Vector3(73, 0, -1);
-        }
-        // «√∑π¿ÃæÓ «“∏”¥œ¡˝ -> shack ¿Ãµø
-        else if (playerTransform.position.x > 66 && playerTransform.position.x < 67 && playerTransform.position.y > -4.5 && playerTransform.position.y < -4 && manager.wolfquest != 4)
-        {
-            playerTransform.position = new Vector3(65, -20.5f, 0);
-            cameraTransform.position = new Vector3(60, -20, -1);
-        }
-        
-        // incameraCharacter «‘ºˆ ¿ÃøÎ
-        else
-        {
-             incameraCharacter();
-        }
-       if  (manager.wolfquest == 5)
-        {
-            RealGM.SetActive(true);
-            Player3.SetActive(true);
-        }
-        if (manager.wolfquest == 6)
-        {
-            RealGM.SetActive(false);
-            Player3.SetActive(false);
-            manager.wolfquest = 7;
-        }
+		// Ï∫êÎ¶≠ÌÑ∞ Ïù¥Îèô Ï†úÏñ¥ Ïä§ÌÅ¨Î¶ΩÌä∏(ÌôîÎ©¥ÏúºÎ°ú Î≥¥ÏïòÏùÑÎïå)
+		if (manager.isAction ? false : Input.GetKey(KeyCode.LeftArrow) || left_Down) //Ï¢åÏ∏° Ïù¥Îèô
+		{
+			if (!left_Down)
+				transform.Translate(-speed * Time.deltaTime + left_Value, 0, 0);
+			else
+				transform.Translate((-speed * Time.deltaTime + left_Value) / 5, 0, 0);
+			animator.SetInteger(animationState, (int)States.left);
+			if (manager.playerswitch == 1)
+				animator.SetInteger(animationState, (int)States.hunter_left);
+			lookDirection = Vector3.left;
+		} else if (manager.isAction ? false : Input.GetKey(KeyCode.RightArrow) || right_Down) //Ïö∞Ï∏° Ïù¥Îèô
+		  {
+			if (!right_Down)
+				transform.Translate(speed * Time.deltaTime + right_Value, 0, 0);
+			else
+				transform.Translate((speed * Time.deltaTime + right_Value) / 5, 0, 0);
+			animator.SetInteger(animationState, (int)States.right);
+			if (manager.playerswitch == 1)
+				animator.SetInteger(animationState, (int)States.hunter_right);
+			lookDirection = Vector3.right;
+		} else if (manager.isAction ? false : Input.GetKey(KeyCode.UpArrow) || up_Down)//ÏúÑÏ∏° Ïù¥Îèô
+		  {
+			if (!up_Down)
+				transform.Translate(0, speed * Time.deltaTime + up_Value, 0);
+			else
+				transform.Translate(0, (speed * Time.deltaTime + up_Value) / 5, 0);
+			animator.SetInteger(animationState, (int)States.front);
+			if (manager.playerswitch == 1)
+				animator.SetInteger(animationState, (int)States.hunter_front);
+			lookDirection = Vector3.back;
+		} else if (manager.isAction ? false : Input.GetKey(KeyCode.DownArrow) || down_Down) //ÏïÑÎûòÏ∏° Ïù¥Îèô
+		  {
+			if (!down_Down)
+				transform.Translate(0, -speed * Time.deltaTime + down_Value, 0);
+			else
+				transform.Translate(0, (-speed * Time.deltaTime + down_Value) / 5, 0);
+			animator.SetInteger(animationState, (int)States.behind);
+			if (manager.playerswitch == 1)
+				animator.SetInteger(animationState, (int)States.hunter_behind);
+			lookDirection = Vector3.forward;
+		}
+		  // Ï∫êÎ¶≠ÌÑ∞ idle ÏÉÅÌÉú
+		  else //Ï†ïÏßÄ ÏÉÅÌÉú
+		  {
+			if (lookDirection == Vector3.right) {
+				animator.SetInteger(animationState, (int)States.idle_right);
+				if (manager.playerswitch == 1)
+					animator.SetInteger(animationState, (int)States.hunter_idle_right);
+			} else if (lookDirection == Vector3.left) {
+				animator.SetInteger(animationState, (int)States.idle_left);
+				if (manager.playerswitch == 1)
+					animator.SetInteger(animationState, (int)States.hunter_idle_left);
+			} else if (lookDirection == Vector3.back) {
+				animator.SetInteger(animationState, (int)States.idle_front);
+				if (manager.playerswitch == 1)
+					animator.SetInteger(animationState, (int)States.hunter_idle_front);
+			} else if (lookDirection == Vector3.forward) {
+				animator.SetInteger(animationState, (int)States.idle_behind);
+				if (manager.playerswitch == 1)
+					animator.SetInteger(animationState, (int)States.hunter_idle_behind);
+			}
+		}
+
+		// main -> Îπ®Í∞ÑÎ™®Ïûê Ïßë Ïù¥Îèô
+		if (playerTransform.position.x > -9.5 && playerTransform.position.x < -8.5 && playerTransform.position.y > 2 && playerTransform.position.y < 3) {
+			playerTransform.position = new Vector3(-6, 15, 0);
+			cameraTransform.position = new Vector3(0f, 20, -1);
+
+		}
+		// Îπ®Í∞ÑÎ™®Ïûê Ïßë -> main Ïù¥Îèô
+		else if (playerTransform.position.x > -6 && playerTransform.position.x < -5.5 && playerTransform.position.y > 15 && playerTransform.position.y < 15.5) {
+			playerTransform.position = new Vector3(-9f, 0.5f, 0);
+			cameraTransform.position = new Vector3(-4f, 2, -1);
+			if (manager.self == 1) {
+				manager.isAction = true;
+				manager.questPanel.SetActive(true);
+			}
+
+		}
+		// ÌÄòÏä§Ìä∏ Î∞õÏïòÏùÑ Îïå ÌÄòÏä§Ìä∏ Î∞ÄÎßµÏúºÎ°ú Ïù¥Îèô
+		else if (playerTransform.position.x > 14 && playerTransform.position.x < 16 && playerTransform.position.y > 1.5 && playerTransform.position.y < 2.5 && manager.questCheck == true && manager.countMeal != 1) {
+			playerTransform.position = new Vector3(37, 19f, 0);
+			cameraTransform.position = new Vector3(37, 21, -1);
+		}
+		// ÌÄòÏä§Ìä∏ ÏôÑÎ£åÏãú main ÎßµÏúºÎ°ú Ïù¥Îèô
+		else if (playerTransform.position.x > 30 && playerTransform.position.x < 43 && playerTransform.position.y > 18 && playerTransform.position.y < 25 && manager.countMeal == 1) {
+			playerTransform.position = new Vector3(15, 0f, 0);
+			cameraTransform.position = new Vector3(6, 6, -1);
+		}
+		//ÌîåÎ†àÏù¥Ïñ¥ main -> forest Ïù¥Îèô
+		else if (playerTransform.position.x > 2.5 && playerTransform.position.x < 3.5 && playerTransform.position.y == -9 && manager.self == 1) {
+			playerTransform.position = new Vector3(3, -17.5f, 0);
+			cameraTransform.position = new Vector3(3.5f, -20, -1);
+
+		}
+		//ÌîåÎ†àÏù¥Ïñ¥ forest -> main Ïù¥Îèô
+		else if (playerTransform.position.x > 2.5 && playerTransform.position.x < 3.5 && playerTransform.position.y > -17 && playerTransform.position.y < -16) {
+			playerTransform.position = new Vector3(3, -8, 0);
+			cameraTransform.position = new Vector3(3.5f, -20, -1);
+
+		}
+		//ÌîåÎ†àÏù¥Ïñ¥ forest -> flower Ïù¥Îèô
+		else if (playerTransform.position.x > 10.5 && playerTransform.position.x < 11.5 && playerTransform.position.y > -23 && playerTransform.position.y < -21) {
+			playerTransform.position = new Vector3(23.5f, -22.5f, 0);
+			cameraTransform.position = new Vector3(30, -20, -1);
+		}
+		//ÌîåÎ†àÏù¥Ïñ¥ flower -> forest Ïù¥Îèô
+		else if (playerTransform.position.x > 21 && playerTransform.position.x < 22.8 && playerTransform.position.y > -23 && playerTransform.position.y < -21) {
+			playerTransform.position = new Vector3(9.7f, -22.5f, 0);
+			cameraTransform.position = new Vector3(3f, -20, -1);
+		}
+		// ÌîåÎ†àÏù¥Ïñ¥ flower -> shack Ïù¥Îèô
+		else if (playerTransform.position.x > 37 && playerTransform.position.x < 40 && playerTransform.position.y > -22 && playerTransform.position.y < -18 && manager.wolfswitch == 0) {
+			manager.count = 1;
+			playerTransform.position = new Vector3(54f, -22f, 0);
+			cameraTransform.position = new Vector3(60, -20, -1);
+		}
+		if (manager.wolfswitch == 1) {
+			manager.wolf.transform.position = new Vector3(60f, -20f, 0);
+			cameraTransform.position = new Vector3(60, -20, -1);
+		} else if (manager.wolfswitch == 2) {
+			cameraTransform.position = new Vector3(30, -20, -1);
+			manager.wolfswitch = 0;
+		} else if (manager.count == 7) {
+			manager.wolf.transform.position = new Vector3(76, 0, 0);
+		}
+		  // ÌîåÎ†àÏù¥Ïñ¥ shack -> flower Ïù¥Îèô
+		  else if (playerTransform.position.x > 51 && playerTransform.position.x < 52 && playerTransform.position.y > -23 && playerTransform.position.y < -21) {
+			playerTransform.position = new Vector3(39.5f, -20.5f, 0);
+			cameraTransform.position = new Vector3(30, -20, -1);
+		}
+		  // ÌîåÎ†àÏù¥ shack -> Ìï†Î®∏ÎãàÏßë Ïù¥Îèô
+		  else if (playerTransform.position.x > 64.5 && playerTransform.position.x < 65.5 && playerTransform.position.y > -20 && playerTransform.position.y < -19 || manager.wolfquest == 3) {
+			manager.count = 3;
+			if (manager.wolfquest == 3) {
+				Player.SetActive(true);
+				Player.transform.position = new Vector3(67, -3, 0);
+				Player.SetActive(false);
+				manager.count = 13;
+				manager.wolfquest = 4;
+				wolf2.SetActive(true);
+			}
+			playerTransform.position = new Vector3(67, -3, 0);
+			cameraTransform.position = new Vector3(73, 0, -1);
+		}
+		  // ÌîåÎ†àÏù¥Ïñ¥ Ìï†Î®∏ÎãàÏßë -> shack Ïù¥Îèô
+		  else if (playerTransform.position.x > 66 && playerTransform.position.x < 67 && playerTransform.position.y > -4.5 && playerTransform.position.y < -4 && manager.wolfquest != 4) {
+			playerTransform.position = new Vector3(65, -20.5f, 0);
+			cameraTransform.position = new Vector3(60, -20, -1);
+		}
+
+		  // incameraCharacter Ìï®Ïàò Ïù¥Ïö©
+		  else {
+			incameraCharacter();
+		}
+		if (manager.wolfquest == 5) {
+			RealGM.SetActive(true);
+			Player3.SetActive(true);
+		}
+		if (manager.wolfquest == 6) {
+			RealGM.SetActive(false);
+			Player3.SetActive(false);
+			manager.wolfquest = 7;
+		}
 
 
-        //Scan Object
-        if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
-            manager.Action(scanObject);
+		//Scan Object
+		if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
+			manager.Action(scanObject);
 
-        //Movile Key Value false
-        
+		//Movile Key Value false
 
 
-    }
-    void CountDraw()
-    {
-        manager.count = 12;
-        manager.talkPanel.SetActive(false);
-    }
-    void CountDown()
-    {
-        manager.count = 10;
-    }
-    void CountUp()
-    {
-        manager.talkPanel.SetActive(false);
-        manager.isAction = false;
-    }
 
-    private void FixedUpdate()
-    {
-        Debug.DrawRay(transform.position, lookDirection * 1.2f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, lookDirection, 1.2f, LayerMask.GetMask("Object"));
+	}
+	void CountDraw()
+	{
+		manager.count = 12;
+		manager.talkPanel.SetActive(false);
+	}
+	void CountDown()
+	{
+		manager.count = 10;
+	}
+	void CountUp()
+	{
+		manager.talkPanel.SetActive(false);
+		manager.isAction = false;
+	}
 
-        if (rayHit.collider != null)
-        {
-            scanObject = rayHit.collider.gameObject;
-        }
-        else
-            scanObject = null;
-    }
-    //ƒ≥∏Ø≈Õ∞° ƒ´∏ﬁ∂Û »≠∏Èø°º≠ ∏¯ π˛æÓ≥™¥¬ ƒ⁄µÂ
-    void incameraCharacter()
-    {
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        if (pos.x < 0f) pos.x = 0f;
-        if (pos.x > 1f) pos.x = 1f;
-        if (pos.y < 0f) pos.y = 0f;
-        if (pos.y > 1f) pos.y = 0.9f;
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
-    }
-        
+	private void FixedUpdate()
+	{
+		Debug.DrawRay(transform.position, lookDirection * 1.2f, new Color(0, 1, 0));
+		RaycastHit2D rayHit = Physics2D.Raycast(transform.position, lookDirection, 1.2f, LayerMask.GetMask("Object"));
+
+		if (rayHit.collider != null) {
+			scanObject = rayHit.collider.gameObject;
+		} else
+			scanObject = null;
+	}
+	//Ï∫êÎ¶≠ÌÑ∞Í∞Ä Ïπ¥Î©îÎùº ÌôîÎ©¥ÏóêÏÑú Î™ª Î≤óÏñ¥ÎÇòÎäî ÏΩîÎìú
+	void incameraCharacter()
+	{
+		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+		if (pos.x < 0f) pos.x = 0f;
+		if (pos.x > 1f) pos.x = 1f;
+		if (pos.y < 0f) pos.y = 0f;
+		if (pos.y > 1f) pos.y = 0.9f;
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
+	}
+
 }
- 

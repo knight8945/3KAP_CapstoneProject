@@ -5,62 +5,58 @@ using UnityEngine.UI;
 using TMPro;
 public class QuizManager : MonoBehaviour
 {
-    public GameManager gamemanager;
-    public TalkManager talkmanager;
-    public int BingGo = 0;
-    public bool isClicked = false;
-    public bool isChecked = false;
-    private void Update()
-    {
-        if (isClicked)
-        {
-            Invoke("InvokeDelay", 2.0f);
-            Debug.Log("isClicked");
-            isClicked = false;
-        }
+	public GameManager gamemanager;
+	public TalkManager talkmanager;
+	public int BingGo = 0;
+	public bool isClicked = false;
+	public bool isChecked = false;
+	private void Update()
+	{
+		if (isClicked) {
+			Invoke("InvokeDelay", 2.0f);
+			Debug.Log("isClicked");
+			isClicked = false;
+		}
 
-    }
-    void InvokeDelay()
-    {
-        if (BingGo == 1)
-        {
-            Debug.Log("complete");
-            gamemanager.Button.SetActive(false);
-            gamemanager.questPanel.SetActive(false);
-            gamemanager.isAction = false;
-        }
-        else
-        {
-            Debug.Log("fail");
-            gamemanager.portraitImg.sprite = talkmanager.GetPortrait(1115 , 0);
-            gamemanager.quizText.text = "¾ö¸¶°¡ ¹«½¼ ²ÉÀ» °¡Á®´Ş¶ó°í Çß¾úÁö?\n\n\n";
-        }
-    }
-    public void OnClickRed()
-    {
-        BingGo = 0;
-        Debug.Log("¿À´äÀÔ´Ï´Ù");
-        gamemanager.questPanel.SetActive(true);
-        gamemanager.quizText.text = "À¸À½.. ÀÌ »ö±òÀÌ ¾Æ´Ï¿´´ø°Í °°¾Æ..\n\n\n";
-        isClicked = true;
-        
-    }
-    public void OnClickBlue()
-    {
-        Debug.Log("Á¤´äÀÔ´Ï´Ù");
-        BingGo = 1;
-        gamemanager.questPanel.SetActive(true);
-        gamemanager.quizText.text = "¸Â¾Æ! ÆÄ¶õ»ö ²ÉÀÌ¿´¾î. Àß ±â¾ïÇØ¾ß°Ú´Ù.\n\n\n";
-        isClicked = true;
-    }
+	}
+	void InvokeDelay()
+	{
+		if (BingGo == 1) {
+			Debug.Log("complete");
+			gamemanager.Button.SetActive(false);
+			gamemanager.questPanel.SetActive(false);
+			gamemanager.isAction = false;
+		} else {
+			Debug.Log("fail");
+			gamemanager.portraitImg.sprite = talkmanager.GetPortrait(1115, 0);
+			gamemanager.quizText.text = "ì—„ë§ˆê°€ ë¬´ìŠ¨ ê½ƒì„ ê°€ì ¸ë‹¬ë¼ê³  í–ˆì—ˆì§€?\n\n\n";
+		}
+	}
+	public void OnClickRed()
+	{
+		BingGo = 0;
+		Debug.Log("ì˜¤ë‹µì…ë‹ˆë‹¤");
+		gamemanager.questPanel.SetActive(true);
+		gamemanager.quizText.text = "ìœ¼ìŒ.. ì´ ìƒ‰ê¹”ì´ ì•„ë‹ˆì˜€ë˜ê²ƒ ê°™ì•„..\n\n\n";
+		isClicked = true;
 
-    public void OnClickYellow()
-    {
-        BingGo = 0;
-        Debug.Log("¿À´äÀÔ´Ï´Ù");
-        gamemanager.questPanel.SetActive(true);
-        gamemanager.quizText.text = "À¸À½.. ÀÌ »ö±òÀÌ ¾Æ´Ï¿´´ø°Í °°¾Æ..\n\n\n";
-        isClicked = true;
-    }
+	}
+	public void OnClickBlue()
+	{
+		Debug.Log("ì •ë‹µì…ë‹ˆë‹¤");
+		BingGo = 1;
+		gamemanager.questPanel.SetActive(true);
+		gamemanager.quizText.text = "ë§ì•„! íŒŒë€ìƒ‰ ê½ƒì´ì˜€ì–´. ì˜ ê¸°ì–µí•´ì•¼ê² ë‹¤.\n\n\n";
+		isClicked = true;
+	}
+
+	public void OnClickYellow()
+	{
+		BingGo = 0;
+		Debug.Log("ì˜¤ë‹µì…ë‹ˆë‹¤");
+		gamemanager.questPanel.SetActive(true);
+		gamemanager.quizText.text = "ìœ¼ìŒ.. ì´ ìƒ‰ê¹”ì´ ì•„ë‹ˆì˜€ë˜ê²ƒ ê°™ì•„..\n\n\n";
+		isClicked = true;
+	}
 
 }
